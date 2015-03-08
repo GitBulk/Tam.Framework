@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5E8FC616-7D64-4DB5-AF72-4608C096AF92}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tam.Blog.Business</RootNamespace>
+    <AssemblyName>Tam.Blog.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementation\BaseBusiness.cs" />
+    <Compile Include="Implementation\CategoryBusiness.cs" />
+    <Compile Include="Implementation\PostBusiness.cs" />
+    <Compile Include="Implementation\UserBusiness.cs" />
+    <Compile Include="Interface\IBaseBusiness.cs" />
+    <Compile Include="Interface\ICategoryBusiness.cs" />
+    <Compile Include="Interface\IPostBusiness.cs" />
+    <Compile Include="Interface\IBusiness.cs" />
+    <Compile Include="Interface\IUserBusiness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Tam.Database\Tam.Database.csproj">
+      <Project>{5fcddcb5-74c8-404c-83ea-0a4320261191}</Project>
+      <Name>Tam.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Tam.Repository\Tam.Repository.csproj">
+      <Project>{a8646bf1-8ac3-4cd0-98bb-91c10a1b9697}</Project>
+      <Name>Tam.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Tam.Util\Tam.Util.csproj">
+      <Project>{991c1051-804e-477a-962b-2a262c0b2ca1}</Project>
+      <Name>Tam.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tam.Blog.Cache\Tam.Blog.Cache.csproj">
+      <Project>{46f6eaa1-bb85-410c-927f-04295503ad69}</Project>
+      <Name>Tam.Blog.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tam.Blog.Model\Tam.Blog.Model.csproj">
+      <Project>{35a698fe-2771-478c-9e66-b231a5b618f2}</Project>
+      <Name>Tam.Blog.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tam.Blog.Repository\Tam.Blog.Repository.csproj">
+      <Project>{26c1800d-7534-4e55-a896-886b37cf4630}</Project>
+      <Name>Tam.Blog.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tam.Blog.ViewModel\Tam.Blog.ViewModel.csproj">
+      <Project>{c942d7eb-d6b9-4c51-8728-02ca89b4dbb7}</Project>
+      <Name>Tam.Blog.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

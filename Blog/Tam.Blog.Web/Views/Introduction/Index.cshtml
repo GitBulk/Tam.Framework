@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@ViewBag.Message
+
+@*@Html.AlphaPager(Tam.Control.BootstrapControls.PagingSize.Large, "", x => Url.Action("Index", "Introduction", new { selectedLetter = x })))*@
+@Html.AlphaPager(Tam.Control.BootstrapControls.PagingSize.Medium, "", x => Url.Action("Index", "Introduction", new { selectedLetter = x }, this.Request.Url.Scheme))

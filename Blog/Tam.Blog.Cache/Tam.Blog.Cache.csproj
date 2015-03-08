@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{46F6EAA1-BB85-410C-927F-04295503AD69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tam.Blog.Cache</RootNamespace>
+    <AssemblyName>Tam.Blog.Cache</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.0.316.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\StackExchange.Redis.1.0.394\lib\net45\StackExchange.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementation\BaseCache.cs" />
+    <Compile Include="Implementation\PostRedisCache.cs" />
+    <Compile Include="Interface\IBaseCache.cs" />
+    <Compile Include="Interface\IPostCache.cs" />
+    <Compile Include="Implementation\PostCache.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Tam.Cache\Tam.Cache.csproj">
+      <Project>{572545bb-8f4f-451a-a1fc-60fdeff6baf6}</Project>
+      <Name>Tam.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Tam.JsonManager\Tam.JsonManager.csproj">
+      <Project>{ddc801f6-edc6-41de-888d-72ffc8f0216b}</Project>
+      <Name>Tam.JsonManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Tam.Redis\Tam.Redis.csproj">
+      <Project>{39b965ce-5e72-4dda-b4bd-69146c90cbdd}</Project>
+      <Name>Tam.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Tam.Repository\Tam.Repository.csproj">
+      <Project>{a8646bf1-8ac3-4cd0-98bb-91c10a1b9697}</Project>
+      <Name>Tam.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Tam.Util\Tam.Util.csproj">
+      <Project>{991c1051-804e-477a-962b-2a262c0b2ca1}</Project>
+      <Name>Tam.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tam.Blog.Model\Tam.Blog.Model.csproj">
+      <Project>{35a698fe-2771-478c-9e66-b231a5b618f2}</Project>
+      <Name>Tam.Blog.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tam.Blog.Repository\Tam.Blog.Repository.csproj">
+      <Project>{26c1800d-7534-4e55-a896-886b37cf4630}</Project>
+      <Name>Tam.Blog.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

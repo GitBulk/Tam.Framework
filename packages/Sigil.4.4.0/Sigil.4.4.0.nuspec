@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Sigil</id>
+    <version>4.4.0</version>
+    <authors>Kevin Montrose</authors>
+    <owners>Kevin Montrose</owners>
+    <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
+    <projectUrl>https://github.com/kevin-montrose/Sigil</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A fail-fast validation helper for .NET CIL generation.</description>
+    <releaseNotes>Adds the option to not reinitialize locals if they're reused.   Defaults to the safe behavior.</releaseNotes>
+    <copyright>2013-2015 Kevin Montrose</copyright>
+    <tags>cil msil il bytecode</tags>
+  </metadata>
+</package>
