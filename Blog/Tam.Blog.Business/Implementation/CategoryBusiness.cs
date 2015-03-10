@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Tam.Blog.Business.Interface;
 using Tam.Blog.Model;
 using Tam.Blog.Repository.Interface;
+using Tam.Repository.Interface;
 using Tam.Util;
 
 namespace Tam.Blog.Business.Implementation

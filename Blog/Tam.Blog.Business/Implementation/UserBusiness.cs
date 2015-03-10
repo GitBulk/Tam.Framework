@@ -9,6 +9,7 @@ using Tam.Blog.Model;
 using Tam.Blog.Model.EnumCollection;
 using Tam.Blog.Repository.Interface;
 using Tam.Blog.ViewModel;
+using Tam.Repository.Interface;
 using Tam.Util;
 
 namespace Tam.Blog.Business.Implementation

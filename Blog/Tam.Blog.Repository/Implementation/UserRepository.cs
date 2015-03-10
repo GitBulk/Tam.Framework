@@ -9,6 +9,7 @@ using Tam.Blog.Repository.Interface;
 using Tam.Blog.Resource;
 using Tam.Blog.ViewModel;
 using Tam.Database;
+using Tam.Repository.Interface;
 using Tam.Util;
 
 namespace Tam.Blog.Repository.Implementation

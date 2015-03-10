@@ -6,6 +6,7 @@ using Tam.Blog.Business.Interface;
 using Tam.Blog.Cache.Interface;
 using Tam.Blog.Repository.Interface;
 using Tam.Database;
+using Tam.Repository.Interface;
 
 namespace Tam.Blog.Business.Implementation
 {

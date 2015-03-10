@@ -7,6 +7,7 @@ using Tam.Blog.Cache.Interface;
 using Tam.Blog.Model;
 using Tam.Blog.Model.EnumCollection;
 using Tam.Blog.Repository.Interface;
+using Tam.Repository.Interface;
 
 namespace Tam.Blog.Business.Implementation
 {

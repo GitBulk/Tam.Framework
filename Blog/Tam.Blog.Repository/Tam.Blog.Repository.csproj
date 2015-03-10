@@ -68,16 +68,15 @@
     <Compile Include="Implementation\RelatedPostRepository.cs" />
     <Compile Include="Implementation\StaticRepository.cs" />
     <Compile Include="Implementation\TagRepository.cs" />
-    <Compile Include="Implementation\UnitOfWork.cs" />
     <Compile Include="Implementation\UserRepository.cs" />
     <Compile Include="Interface\IAsyncBlog.cs" />
     <Compile Include="Interface\IBannedIpAddress.cs" />
+    <Compile Include="Interface\IConnectionStringRepository.cs" />
     <Compile Include="Interface\IPostRepository.cs" />
     <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\IBaseRepository.cs" />
     <Compile Include="Interface\IRelatedPostRepository.cs" />
     <Compile Include="Interface\ITagRepository.cs" />
-    <Compile Include="Interface\IUnitOfWork .cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

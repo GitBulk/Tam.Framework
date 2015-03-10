@@ -1,13 +1,10 @@
 ﻿using Ninject.Modules;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tam.Blog.Model;
 using Tam.Blog.Repository.Implementation;
 using Tam.Blog.Repository.Interface;
+using Tam.Repository.Implementation;
+using Tam.Repository.Interface;
 
 namespace Tam.Blog.DI
 {

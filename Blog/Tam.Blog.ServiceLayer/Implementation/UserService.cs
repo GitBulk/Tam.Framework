@@ -9,6 +9,7 @@ using Tam.Blog.Model.EnumCollection;
 using Tam.Blog.Repository.Interface;
 using Tam.Blog.ServiceLayer.Interface;
 using Tam.Blog.ViewModel;
+using Tam.Repository.Interface;
 using Tam.Util;
 
 namespace Tam.Blog.ServiceLayer.Implementation
