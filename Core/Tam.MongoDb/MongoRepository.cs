@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Tam.MongoDb
 {
-    public class MongoRepository<T> where T : IBaseEntity<ObjectId>
+    public class MongoRepository<T> : IMongoRepository<T> where T : MongoBaseEntity
     {
 
         //string connectionString = "mongodb://localhost";
@@ -59,15 +59,6 @@ namespace Tam.MongoDb
             return database.GetCollection<T>(typeof(T).Name);
         }
 
-        private MongoCollection<T> GetCollection(MongoUrl url)
-        {
-            var client = new MongoClient(url);
-            MongoServer server = client.GetServer();
-            string databaseName = url.DatabaseName;
-            var collection = server.GetDatabase(databaseName).GetCollection<T>(typeof(T).Name);
-            return collection;
-        }
-
         public string CollectionName
         {
             get
@@ -103,7 +94,7 @@ namespace Tam.MongoDb
         {
             var query = Query<T>.EQ(i => i.Id, item.Id);
             var update = Update<T>.Replace(item);
-            this.collection.Update(query, update);
+            WriteConcernResult result = this.collection.Update(query, update);
             return item;
         }
 
@@ -117,20 +108,21 @@ namespace Tam.MongoDb
             return Update(item);
         }
 
-        public virtual void Delete(ObjectId id)
+        public virtual bool Delete(ObjectId id)
         {
-            this.collection.Remove(Query<T>.EQ<ObjectId>(q => q.Id, id));
+            WriteConcernResult result = this.collection.Remove(Query<T>.EQ<ObjectId>(q => q.Id, id));
             // or
             //this.collection.Remove(Query.EQ("_id", id));
+            return result.DocumentsAffected == 1;
         }
 
-        public virtual void Delete(T item)
+        public virtual bool Delete(T item)
         {
             if (item == null)
             {
                 throw new ArgumentNullException("item is null");
             }
-            Delete(item.Id);
+            return Delete(item.Id);
         }
 
         public virtual void DeleteAll()
@@ -190,6 +182,51 @@ namespace Tam.MongoDb
             }
             bool result = this.collection.AsQueryable<T>().Any(condition);
             return result;
+        }
+
+        public virtual SearchResult SearchFor(IMongoQuery query, int skip, int take)
+        {
+            long count = this.collection.Find(query).Count();
+            var results = this.collection.Find(query).SetSkip(skip).SetLimit(take).ToList<MongoBaseEntity>();
+            return new SearchResult
+            {
+                TotalItem = count,
+                TotalResult = results
+            };
+        }
+
+        public virtual SearchResult SearchFor(Expression<Func<T, bool>> condition, int skip, int take = 12)
+        {
+            return SearchFor(condition, skip, take, null);
+        }
+
+        public virtual SearchResult SearchFor(Expression<Func<T, bool>> condition, int skip, int take = 12, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+        {
+            var searchResult = new SearchResult();
+            if (take < 1)
+            {
+                return searchResult;
+            }
+            var query = this.collection.AsQueryable<T>();
+            long count = query.LongCount();
+            if (condition != null)
+            {
+                query = query.Where(condition);
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            if (skip > 0)
+            {
+                query = query.Skip(skip);
+            }
+            var result = query.Take(take).ToList<MongoBaseEntity>();
+
+            searchResult.TotalItem = count;
+            searchResult.TotalResult = result;
+
+            return searchResult;
         }
     }
 }
