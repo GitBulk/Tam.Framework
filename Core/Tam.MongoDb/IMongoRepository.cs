@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Tam.Repository.Interface;
 
@@ -69,7 +71,7 @@ namespace Tam.MongoDb
         /// Get many items
         /// </summary>
         /// <param name="condition">The expression</param>
-        /// <param name="orderBy">Orderby item</param>
+        /// <param name="orderBy">Orderby items</param>
         /// <returns>The items which are mathing the condition</returns>
         System.Collections.Generic.List<T> Get(System.Linq.Expressions.Expression<Func<T, bool>> condition = null, Func<System.Linq.IQueryable<T>, System.Linq.IOrderedQueryable<T>> orderBy = null);
 
@@ -111,6 +113,14 @@ namespace Tam.MongoDb
         /// <param name="take">Returns a specified number of contiguous elements from the start of a sequence.</param>
         /// <returns>The items which are matching condition</returns>
         SearchResult SearchFor(Expression<Func<T, bool>> condition, int skip, int take = 12);
+
+        /// <summary>
+        /// Get many items
+        /// </summary>
+        /// <param name="condition">The expresion/where clause</param>
+        /// <param name="orderBy">Orderby items</param>
+        /// <returns>A List of T type</returns>
+        List<T> GetItems(Expression<Func<T, bool>> condition, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
     }
 
 }

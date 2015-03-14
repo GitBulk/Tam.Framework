@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="IMongoRepository.cs" />
+    <Compile Include="MongoClientExtension.cs" />
     <Compile Include="MongoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchResult.cs" />

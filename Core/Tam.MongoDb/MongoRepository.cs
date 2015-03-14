@@ -228,5 +228,19 @@ namespace Tam.MongoDb
 
             return searchResult;
         }
+
+        public virtual List<T> GetItems(Expression<Func<T, bool>> condition, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+        {
+            var query = this.collection.AsQueryable<T>();
+            if (condition != null)
+            {
+                query = query.Where(condition);
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            return query.ToList<T>();
+        }
     }
 }
