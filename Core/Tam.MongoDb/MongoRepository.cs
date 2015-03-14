@@ -208,11 +208,11 @@ namespace Tam.MongoDb
                 return searchResult;
             }
             var query = this.collection.AsQueryable<T>();
-            long count = query.LongCount();
             if (condition != null)
             {
                 query = query.Where(condition);
             }
+            long count = query.LongCount();
             if (orderBy != null)
             {
                 query = orderBy(query);
