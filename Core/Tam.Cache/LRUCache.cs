@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Runtime.Caching;
@@ -282,6 +283,35 @@ namespace Tam.Cache
             }
 
             return null;
+        }
+
+        public static void Clear(string prefixKey = null)
+        {
+            if (string.IsNullOrWhiteSpace(prefixKey))
+            {
+                foreach (var item in CacheConcurrentDictionary)
+                {
+                    Remove(item.Key);
+                }
+                CacheConcurrentDictionary.Clear();
+            }
+            else
+            {
+                var listKeyRemoved = new List<string>();
+                foreach (var item in CacheConcurrentDictionary)
+                {
+                    if (item.Key.StartsWith(prefixKey, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Remove(item.Key);
+                        listKeyRemoved.Add(item.Key);
+                    }
+                }
+                int temp = 0;
+                foreach (var key in listKeyRemoved)
+                {
+                    CacheConcurrentDictionary.TryRemove(key, out temp);
+                }
+            }
         }
     }
 }
