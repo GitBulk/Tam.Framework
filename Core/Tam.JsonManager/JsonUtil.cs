@@ -57,5 +57,12 @@ namespace Tam.JsonManager
                 return result;
             }
         }
+
+        public static string GetPrettyJson(string json)
+        {
+            dynamic parsedJson = JsonConvert.DeserializeObject(json);
+            string prettyJson = string.Format("<pre>{0}</pre>", JsonConvert.SerializeObject(parsedJson, Formatting.Indented));
+            return prettyJson;
+        }
     }
 }

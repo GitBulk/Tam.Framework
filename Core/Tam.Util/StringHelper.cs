@@ -35,7 +35,7 @@ namespace Tam.Util
             return builder.ToString();
         }
 
-        public static string RemoveAccent(string input)
+        public static string RemoveAccent(this string input)
         {
             // http://quyetdo289.wordpress.com/2012/06/23/loai-bo-dau-tieng-viet-trong-c/
             var signs = new string[]
@@ -67,6 +67,10 @@ namespace Tam.Util
             ////Regex regex = new Regex(@"\p{IsCombiningDiacriticalMarks}+");
             ////string strFormD = input.Normalize(System.Text.NormalizationForm.FormD);
             ////return regex.Replace(strFormD, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+
+            // or
+            //byte[] tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(url);
+            //return System.Text.Encoding.UTF8.GetString(tempBytes);
         }
 
         /// <summary>
@@ -74,7 +78,7 @@ namespace Tam.Util
         /// </summary>
         /// <param name="input">The text you want to convert</param>
         /// <returns>A clean url</returns>
-        public static string Slugify(string input)
+        public static string Slugify(this string input)
         {
             string temp = RemoveAccent(input).ToLower().Trim();
             // remove invalid chars
@@ -94,7 +98,7 @@ namespace Tam.Util
         /// </summary>
         /// <param name="input">The text you want to convert</param>
         /// <returns>A title case string</returns>
-        public static string ToTitleCase(string input)
+        public static string ToTitleCase(this string input)
         {
             if (input == null)
             {
@@ -108,7 +112,7 @@ namespace Tam.Util
         /// </summary>
         /// <param name="input">The text you want to convert</param>
         /// <returns></returns>
-        public static string OneWhiteSpace(string input)
+        public static string OneWhiteSpace(this string input)
         {
             // \s is white space character
             // + one or more matches
@@ -188,6 +192,34 @@ namespace Tam.Util
                 return true;
             }
             return false;
+        }
+
+        public static bool HasValue(this string value)
+        {
+            return !string.IsNullOrWhiteSpace(value);
+        }
+
+        public static string Truncate(this string text, int maxCharacters, string trailingText = "...")
+        {
+            if (string.IsNullOrWhiteSpace(text) || maxCharacters <= 0)
+            {
+                return text;
+            }
+            string result = text;
+            if (text.Length >= maxCharacters)
+            {
+                result = text.Substring(0, maxCharacters) + trailingText;
+            }
+            return result;
+        }
+
+        public static string ToString(this IEnumerable<int> value)
+        {
+            if (value == null || value.Any() == false)
+            {
+                return string.Empty;
+            }
+            return string.Join(",", value);
         }
     }
 }

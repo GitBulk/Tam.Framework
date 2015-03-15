@@ -94,8 +94,6 @@ namespace Tam.Util
             return false;
         }
 
-
-
         public static string GetPublicIP()
         {
             String result = "";
