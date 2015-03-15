@@ -9,11 +9,11 @@ namespace Tam.Repository.Interface
 {
     public interface ICrudRepository<T> : IBaseRepository where T : class
     {
-        void Add(T entityToInsert);
+        void Add(T item);
 
         void Delete(object id);
 
-        void Delete(T entityToDelete);
+        void Delete(T item);
 
         void Dispose();
 
@@ -33,6 +33,6 @@ namespace Tam.Repository.Interface
 
         IQueryable<T> SearchFor(Expression<Func<T, bool>> where, int skip, int take, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
 
-        void Update(T entityToUpdate);
+        void Update(T item);
     }
 }

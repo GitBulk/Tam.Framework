@@ -61,7 +61,6 @@
     <Compile Include="Interface\IEntityFrameworkRepository.cs" />
     <Compile Include="Interface\ICrudAsyncRepository.cs" />
     <Compile Include="Interface\ICrudRepository.cs" />
-    <Compile Include="Interface\IMongoDbRepository.cs" />
     <Compile Include="Interface\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
