@@ -20,18 +20,25 @@ namespace Tam.MongoDb
         {
             client = new MongoClient(url);
             MongoServer server = client.GetServer();
-            server.Connect();
             return TestConnection(server);
         }
 
         private static bool TestConnection(MongoServer server)
         {
-            server.Connect();
-            if (server.State == MongoServerState.Connected || server.State == MongoServerState.ConnectedToSubset)
+            bool result = false;
+            try
             {
-                return true;
+                server.Connect();
+                if (server.State == MongoServerState.Connected || server.State == MongoServerState.ConnectedToSubset)
+                {
+                    result = true;
+                }
             }
-            return false;
+            finally
+            {
+                server.Disconnect();
+            }
+            return result;
         }
     }
 }

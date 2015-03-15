@@ -13,18 +13,6 @@ namespace Tam.MongoDb
 {
     public class MongoRepository<T> : IMongoRepository<T> where T : MongoBaseEntity
     {
-
-        //string connectionString = "mongodb://localhost";
-        //   string databaseName = "CSharp";
-
-        //   // ket noi toi serber
-        //   Console.WriteLine("Ket noi server");
-        //   var client = new MongoClient(connectionString);
-        //   MongoServer server = client.GetServer();
-
-        //   Console.WriteLine("tao database");
-        //   MongoDatabase db = server.GetDatabase(databaseName);
-
         MongoCollection<T> collection;
         MongoDatabase database;
         public MongoRepository(string connectionString)
