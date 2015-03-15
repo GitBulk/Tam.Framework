@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="FeedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectListItemHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
