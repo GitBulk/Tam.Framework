@@ -292,10 +292,6 @@
       <Project>{35a698fe-2771-478c-9e66-b231a5b618f2}</Project>
       <Name>Tam.Blog.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tam.Blog.ServiceLayer\Tam.Blog.ServiceLayer.csproj">
-      <Project>{0623a08e-433a-41d6-8ea9-f12949244106}</Project>
-      <Name>Tam.Blog.ServiceLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tam.Blog.ViewModel\Tam.Blog.ViewModel.csproj">
       <Project>{c942d7eb-d6b9-4c51-8728-02ca89b4dbb7}</Project>
       <Name>Tam.Blog.ViewModel</Name>

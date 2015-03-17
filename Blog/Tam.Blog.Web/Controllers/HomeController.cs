@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Tam.Blog.ServiceLayer.Interface;
 using Tam.Blog.Model;
 using Tam.Blog.Cache.Interface;
-using Tam.Blog.ServiceLayer.Implementation;
 using System.Threading.Tasks;
 using System.IO;
 

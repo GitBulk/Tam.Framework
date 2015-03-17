@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject;
 using Ninject.Modules;
-using Tam.Blog.ServiceLayer.Interface;
-using Tam.Blog.ServiceLayer.Implementation;
+
 
 namespace Tam.Blog.DI
 {
@@ -14,8 +13,7 @@ namespace Tam.Blog.DI
     {
         public override void Load()
         {
-            Bind<IPostService>().To<PostService>();
-            Bind<IUserService>().To<UserService>();
+
         }
     }
 }

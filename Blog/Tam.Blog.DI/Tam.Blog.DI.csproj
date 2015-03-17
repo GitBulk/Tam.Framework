@@ -85,10 +85,6 @@
       <Project>{26c1800d-7534-4e55-a896-886b37cf4630}</Project>
       <Name>Tam.Blog.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tam.Blog.ServiceLayer\Tam.Blog.ServiceLayer.csproj">
-      <Project>{0623a08e-433a-41d6-8ea9-f12949244106}</Project>
-      <Name>Tam.Blog.ServiceLayer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
