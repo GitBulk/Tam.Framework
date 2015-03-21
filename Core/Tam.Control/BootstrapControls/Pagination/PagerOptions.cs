@@ -42,6 +42,8 @@ namespace Tam.Control.BootstrapControls.Pagination
 
         public string Page { get; set; }
 
+        public bool Goto { get; set; }
+
         public PagerOptions()
         {
             this.PageSize = 10;

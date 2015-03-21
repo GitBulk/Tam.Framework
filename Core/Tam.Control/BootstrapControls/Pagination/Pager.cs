@@ -12,7 +12,7 @@ namespace Tam.Control.BootstrapControls.Pagination
 {
     public class Pager
     {
-        private int pageSize;
+        protected int pageSize;
 
         /// <summary>
         /// number of total results
@@ -56,7 +56,6 @@ namespace Tam.Control.BootstrapControls.Pagination
             }
             else
             {
-
                 #region first, previous link
                 if (this.pageOptions.DisplayFirstPage)
                 {
@@ -84,6 +83,17 @@ namespace Tam.Control.BootstrapControls.Pagination
                 }
 
                 #endregion first, previous link
+
+                #region Goto Previous Fragment
+                if (this.pageOptions.Goto)
+                {
+                    int previousFragmentPage = currentPage - this.pageOptions.NumberOfPagesLeftSide - 1;
+                    if (previousFragmentPage > 0)
+                    {
+                        builder.AppendLine(GetEnableLink("...", previousFragmentPage));
+                    }
+                }
+                #endregion
 
                 #region pages
 
@@ -137,6 +147,17 @@ namespace Tam.Control.BootstrapControls.Pagination
                 }
 
                 #endregion pages
+
+                #region Goto Next Fragment
+                if (this.pageOptions.Goto)
+                {
+                    int nextFragmentPage = currentPage + this.pageOptions.NumberOfPagesRightSide + 1;
+                    if (nextFragmentPage < totalPage)
+                    {
+                        builder.AppendLine(GetEnableLink("...", nextFragmentPage));
+                    }
+                }
+                #endregion
 
                 #region next, last link
 

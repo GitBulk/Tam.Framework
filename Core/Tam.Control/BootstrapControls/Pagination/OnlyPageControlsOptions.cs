@@ -11,6 +11,7 @@ namespace Tam.Control.BootstrapControls.Pagination
         public OnlyPageControlsOptions()
         {
             this.IsShowPages = false;
+            this.Goto = false;
         }
     }
 }
