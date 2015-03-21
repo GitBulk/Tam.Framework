@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tam.Mvc.Extension.BoostrapPager
+namespace Tam.Control.BootstrapControls.Pagination
 {
-    public enum Size
+    public enum PagerSize
     {
         Large,
         Normal,

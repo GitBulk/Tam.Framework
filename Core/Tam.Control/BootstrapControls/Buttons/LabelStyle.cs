@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tam.Control.BootstrapControls.Buttons
+namespace Tam.Control.BootstrapControls
 {
     public enum LabelStyle
     {

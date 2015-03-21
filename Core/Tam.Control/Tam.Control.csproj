@@ -73,12 +73,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootstrapControls\Pagination\OnlyPageControlsOptions.cs" />
+    <Compile Include="BootstrapControls\Pagination\OnlyPageNumberOptions.cs" />
+    <Compile Include="BootstrapControls\Pagination\Pager.cs" />
+    <Compile Include="BootstrapControls\Pagination\PagerExtension.cs" />
+    <Compile Include="BootstrapControls\Pagination\PagerOptions.cs" />
+    <Compile Include="BootstrapControls\Pagination\PagerSize.cs" />
     <Compile Include="BootstrapControls\BootStrapHelper.cs" />
     <Compile Include="BootstrapControls\Buttons\ButtonStyle.cs" />
     <Compile Include="BootstrapControls\Buttons\ButtonType.cs" />
     <Compile Include="BootstrapControls\Buttons\ImageStyle.cs" />
     <Compile Include="BootstrapControls\Buttons\LabelStyle.cs" />
-    <Compile Include="BootstrapControls\PagingSize.cs" />
     <Compile Include="CustomeVirtualFile.cs" />
     <Compile Include="CustomeVirtualProviderPath.cs" />
     <Compile Include="GlyphIcons.cs" />
@@ -86,6 +91,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BootstrapControls\Pagination\Read me.txt" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>

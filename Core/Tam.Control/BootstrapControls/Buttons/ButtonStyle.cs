@@ -1,4 +1,4 @@
-﻿namespace Tam.Control.BootstrapControls.Buttons
+﻿namespace Tam.Control.BootstrapControls
 {
     public enum ButtonStyle
     {

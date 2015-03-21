@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tam.Mvc.Extension.BoostrapPager
+namespace Tam.Control.BootstrapControls.Pagination
 {
     public class PagerOptions
     {
@@ -38,7 +38,7 @@ namespace Tam.Mvc.Extension.BoostrapPager
 
         public int NumberOfPagesRightSide { get; set; }
 
-        public Size Size { get; set; }
+        public PagerSize Size { get; set; }
 
         public string Page { get; set; }
 
@@ -54,7 +54,7 @@ namespace Tam.Mvc.Extension.BoostrapPager
             this.TextNextPage = "&rsaquo;";
             this.IsShowPages = true;
             this.Page = "page";
-            this.Size = Size.Normal;
+            this.Size = PagerSize.Normal;
         }
     }
 }

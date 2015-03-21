@@ -10,6 +10,7 @@ using System.Web.Mvc.Html;
 using System.Web;
 using NLog;
 using System.Web.Routing;
+using Tam.Control.BootstrapControls.Pagination;
 
 
 namespace Tam.Control
@@ -25,7 +26,7 @@ namespace Tam.Control
             return new BootStrapHelper();
         }
 
-        public static MvcHtmlString AlphaPager(this HtmlHelper helper, PagingSize pagingSize, string selectedText,
+        public static MvcHtmlString AlphaPager(this HtmlHelper helper, PagerSize pagingSize, string selectedText,
             Func<string, string> pageLink)
         {
             List<string> alphabet = Enumerable.Range(65, 26).Select(i => ((char)i).ToString()).ToList();
@@ -34,11 +35,11 @@ namespace Tam.Control
             var builder = new StringBuilder();
 
             string classPagingAttribute = ""; // medium size
-            if (pagingSize == PagingSize.Large)
+            if (pagingSize == PagerSize.Large)
             {
                 classPagingAttribute = "pagination-lg";
             }
-            else if (pagingSize == PagingSize.Small)
+            else if (pagingSize == PagerSize.Small)
             {
                 classPagingAttribute = "pagination-sm";
             }

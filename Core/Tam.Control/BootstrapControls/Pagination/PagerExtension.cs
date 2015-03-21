@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 
-namespace Tam.Mvc.Extension.BoostrapPager
+namespace Tam.Control.BootstrapControls.Pagination
 {
     public static class PagerExtension
     {

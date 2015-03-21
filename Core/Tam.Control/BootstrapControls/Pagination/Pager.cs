@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Routing;
 
-namespace Tam.Mvc.Extension.BoostrapPager
+namespace Tam.Control.BootstrapControls.Pagination
 {
     public class Pager
     {
@@ -17,17 +17,16 @@ namespace Tam.Mvc.Extension.BoostrapPager
         /// <summary>
         /// number of total results
         /// </summary>
-        private int totalResult;
+        protected int totalResult;
 
-        private PagerOptions pageOptions;
+        protected PagerOptions pageOptions;
 
-        private RouteValueDictionary routeDictionary;
+        protected RouteValueDictionary routeDictionary;
 
-        private ViewContext viewContext;
+        protected ViewContext viewContext;
 
-        private HtmlHelper htmlHelper;
-        private AjaxHelper ajaxHelper;
-        private AjaxOptions ajaxOptions;
+        protected AjaxHelper ajaxHelper;
+        protected AjaxOptions ajaxOptions;
 
         public Pager(PagerOptions pagerOptions, RouteValueDictionary routeDictionary,
             ViewContext viewContext, AjaxHelper ajaxHelper = null, AjaxOptions ajaxOptions = null)
@@ -88,50 +87,53 @@ namespace Tam.Mvc.Extension.BoostrapPager
 
                 #region pages
 
-                int numberOfPagesLeftSide = this.pageOptions.NumberOfPagesLeftSide;
-                int numberOfPagesRightSide = this.pageOptions.NumberOfPagesRightSide;
                 if (this.pageOptions.IsShowPages)
                 {
-                    #region left side of current page
-
-                    int startPageOfLeftSide = currentPage - numberOfPagesLeftSide;
-                    if (startPageOfLeftSide <= 0)
+                    int numberOfPagesLeftSide = this.pageOptions.NumberOfPagesLeftSide;
+                    int numberOfPagesRightSide = this.pageOptions.NumberOfPagesRightSide;
+                    if (this.pageOptions.IsShowPages)
                     {
-                        startPageOfLeftSide = 1;
+                        #region left side of current page
+
+                        int startPageOfLeftSide = currentPage - numberOfPagesLeftSide;
+                        if (startPageOfLeftSide <= 0)
+                        {
+                            startPageOfLeftSide = 1;
+                        }
+                        for (int i = startPageOfLeftSide; i < currentPage; i++)
+                        {
+                            //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
+                            builder.AppendLine(GetEnableLink(i.ToString(), i));
+                        }
+
+                        #endregion left side of current page
+
+                        #region current page
+
+                        builder.AppendLine(GetCurrentPageLink());
+
+                        #endregion current page
+
+                        #region right side of current page
+
+                        int endPageOfRightSide = currentPage + numberOfPagesRightSide;
+                        //if (startPageOfRightSide > this.pageOption.NumberOfPage)
+                        //{
+                        //    startPageOfRightSide = this.pageOption.NumberOfPage;
+                        //}
+
+                        if (endPageOfRightSide > totalPage)
+                        {
+                            endPageOfRightSide = totalPage;
+                        }
+                        for (int i = currentPage + 1; i <= endPageOfRightSide; i++)
+                        {
+                            //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
+                            builder.AppendLine(GetEnableLink(i.ToString(), i));
+                        }
+
+                        #endregion right side of current page
                     }
-                    for (int i = startPageOfLeftSide; i < currentPage; i++)
-                    {
-                        //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
-                        builder.AppendLine(GetEnableLink(i.ToString(), i));
-                    }
-
-                    #endregion left side of current page
-
-                    #region current page
-
-                    builder.AppendLine(GetCurrentPageLink());
-
-                    #endregion current page
-
-                    #region right side of current page
-
-                    int endPageOfRightSide = currentPage + numberOfPagesRightSide;
-                    //if (startPageOfRightSide > this.pageOption.NumberOfPage)
-                    //{
-                    //    startPageOfRightSide = this.pageOption.NumberOfPage;
-                    //}
-
-                    if (endPageOfRightSide > totalPage)
-                    {
-                        endPageOfRightSide = totalPage;
-                    }
-                    for (int i = currentPage + 1; i <= endPageOfRightSide; i++)
-                    {
-                        //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
-                        builder.AppendLine(GetEnableLink(i.ToString(), i));
-                    }
-
-                    #endregion right side of current page
                 }
 
                 #endregion pages
@@ -168,13 +170,13 @@ namespace Tam.Mvc.Extension.BoostrapPager
             return builder.ToString();
         }
 
-        public virtual string GetPagerSize(Size size)
+        private string GetPagerSize(PagerSize size)
         {
-            if (size == Size.Large)
+            if (size == PagerSize.Large)
             {
                 return " pagination-lg";
             }
-            else if (size == Size.Small)
+            else if (size == PagerSize.Small)
             {
                 return " pagination-sm";
             }
@@ -183,39 +185,52 @@ namespace Tam.Mvc.Extension.BoostrapPager
 
         private string CreateHtmlLink(int page, string linkText)
         {
-            string actionName = this.routeDictionary["action"].ToString();
-            string controllerName = this.routeDictionary["controller"].ToString();
             string pageQueryString = this.pageOptions.Page;
-            var routeCollection = new RouteValueDictionary(this.viewContext.RequestContext.RouteData.Values);
-            routeCollection.Add(pageQueryString, page);
-            VirtualPathData virtualPath = RouteTable.Routes.GetVirtualPath(this.viewContext.RequestContext, routeCollection);
-            //string result;
-            //var queryString = this.viewContext.RequestContext.HttpContext.Request.QueryString;
-            //if (queryString.Count > 0)
-            //{
-            //    foreach (string key in queryString.AllKeys)
-            //    {
-            //        if (string.Equals(key, pageQueryString, StringComparison.OrdinalIgnoreCase))
-            //        {
-            //            routeCollection[pageQueryString] = queryString[key];
-            //        }
-            //    }
-            //}
+            //var currentRouteValue = this.viewContext.RequestContext.RouteData.Values;
+            var routeContext = new RouteValueDictionary(this.viewContext.RequestContext.RouteData.Values);
+            routeContext.Add(pageQueryString, page);
+            if (this.routeDictionary != null && this.routeDictionary.Count > 0)
+            {
+                foreach (var item in this.routeDictionary)
+                {
+                    if (routeContext.ContainsKey(item.Key) == false)
+                    {
+                        routeContext.Add(item.Key, item.Value);
+                    }
+                }
+            }
+            VirtualPathData virtualPath = RouteTable.Routes.GetVirtualPathForArea(this.viewContext.RequestContext, routeContext);
             string tempUrl = this.viewContext.Controller.ControllerContext.HttpContext.Request.RawUrl;
-
             //string url = string.Format("{0}?{1}={2}", tempUrl, pageQueryString, 2);
-            string ajaxLink = this.ajaxHelper.ActionLink(page.ToString(), actionName, routeCollection, this.ajaxOptions).ToHtmlString();
-            string url = virtualPath.VirtualPath;
-            return string.Format("<a href=\"{0}\">{1}</a>", url, linkText);
+            string url = (virtualPath == null ? "" : virtualPath.VirtualPath);
+            return string.Format("<li><a href=\"{0}\">{1}</a></li>", url, linkText);
         }
 
-        private string CraeteAjaxLink(int page, string linkText)
+        private string CreateAjaxLink(int page, string linkText)
         {
-            string actionName = this.routeDictionary["action"].ToString();
+            var routeContext = new RouteValueDictionary(this.viewContext.RequestContext.RouteData.Values);
+            string actionName = "";
+            if (this.routeDictionary["action"] != null)
+            {
+                actionName = this.routeDictionary["action"].ToString();
+            }
+            else
+            {
+                actionName = routeContext["action"].ToString();
+            }
             string pageQueryString = this.pageOptions.Page;
-            var routeCollection = new RouteValueDictionary(this.viewContext.RequestContext.RouteData.Values);
-            routeCollection.Add(pageQueryString, page);
-            string ajaxLink = this.ajaxHelper.ActionLink(HttpUtility.HtmlDecode(linkText), actionName, routeCollection, this.ajaxOptions).ToString();
+
+            routeContext.Add(pageQueryString, page);
+            string ajaxLink = "";
+            if (this.routeDictionary["controller"] == null)
+            {
+                ajaxLink = this.ajaxHelper.ActionLink(HttpUtility.HtmlDecode(linkText), actionName, routeContext, this.ajaxOptions).ToString();
+            }
+            else
+            {
+                string controllerName = this.routeDictionary["controller"].ToString();
+                ajaxLink = this.ajaxHelper.ActionLink(HttpUtility.HtmlDecode(linkText), actionName, controllerName, routeContext, this.ajaxOptions).ToString();
+            }
             return string.Format("<li>{0}</li>", ajaxLink);
         }
 
@@ -240,7 +255,7 @@ namespace Tam.Mvc.Extension.BoostrapPager
                 return CreateHtmlLink(page, linkText);
             }
 
-            return CraeteAjaxLink(page, linkText);
+            return CreateAjaxLink(page, linkText);
         }
     }
 }
