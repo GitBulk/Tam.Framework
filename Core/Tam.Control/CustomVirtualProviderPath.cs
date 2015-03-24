@@ -13,13 +13,13 @@ namespace Tam.Control
 {
 
     // http://www.danielroot.info/2013/07/reuse-mvc-views-using-virtual-path.html
-    public class CustomeVirtualProviderPath : VirtualPathProvider
+    public class CustomVirtualProviderPath : VirtualPathProvider
     {
-        private readonly Assembly assembly = typeof(CustomeVirtualProviderPath).Assembly;
+        private readonly Assembly assembly = typeof(CustomVirtualProviderPath).Assembly;
 
         private readonly string[] resourceNames;
 
-        public CustomeVirtualProviderPath()
+        public CustomVirtualProviderPath()
         {
             this.resourceNames = assembly.GetManifestResourceNames();
         }

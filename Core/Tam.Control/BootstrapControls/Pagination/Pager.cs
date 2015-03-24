@@ -43,7 +43,7 @@ namespace Tam.Control.BootstrapControls.Pagination
         public virtual string BuildLinks()
         {
             var builder = new StringBuilder();
-            builder.AppendLine("<nav>");
+            builder.AppendLine(string.Format("<div class=\"pagination-{0}\">", this.pageOptions.Position.ToString().ToLower()));
             builder.AppendLine(string.Format("<ul class=\"pagination{0}\">", GetPagerSize(this.pageOptions.Size)));
             int currentPage = this.pageOptions.CurentPage;
             int numberOfPage = this.pageOptions.NumberOfPage;
@@ -57,7 +57,7 @@ namespace Tam.Control.BootstrapControls.Pagination
             else
             {
                 #region first, previous link
-                if (this.pageOptions.DisplayFirstPage)
+                if (this.pageOptions.DisplayFirstLastPage)
                 {
                     if (currentPage <= 1)
                     {
@@ -69,7 +69,7 @@ namespace Tam.Control.BootstrapControls.Pagination
                         builder.AppendLine(GetEnableLink(this.pageOptions.TextFirstPage, 1));
                     }
                 }
-                if (this.pageOptions.DisplayPreviousPage)
+                if (this.pageOptions.DisplayPreviousNextPage)
                 {
                     if (currentPage > 1)
                     {
@@ -84,84 +84,77 @@ namespace Tam.Control.BootstrapControls.Pagination
 
                 #endregion first, previous link
 
-                #region Goto Previous Fragment
-                if (this.pageOptions.Goto)
-                {
-                    int previousFragmentPage = currentPage - this.pageOptions.NumberOfPagesLeftSide - 1;
-                    if (previousFragmentPage > 0)
-                    {
-                        builder.AppendLine(GetEnableLink("...", previousFragmentPage));
-                    }
-                }
-                #endregion
-
                 #region pages
 
                 if (this.pageOptions.IsShowPages)
                 {
+                    #region Goto Previous Fragment
+                    if (this.pageOptions.Goto)
+                    {
+                        int previousFragmentPage = currentPage - this.pageOptions.NumberOfPagesLeftSide - 1;
+                        if (previousFragmentPage > 0)
+                        {
+                            builder.AppendLine(GetEnableLink("...", previousFragmentPage));
+                        }
+                    }
+                    #endregion
+
+                    #region left side of current page
+
                     int numberOfPagesLeftSide = this.pageOptions.NumberOfPagesLeftSide;
                     int numberOfPagesRightSide = this.pageOptions.NumberOfPagesRightSide;
-                    if (this.pageOptions.IsShowPages)
+                    int startPageOfLeftSide = currentPage - numberOfPagesLeftSide;
+                    if (startPageOfLeftSide <= 0)
                     {
-                        #region left side of current page
-
-                        int startPageOfLeftSide = currentPage - numberOfPagesLeftSide;
-                        if (startPageOfLeftSide <= 0)
-                        {
-                            startPageOfLeftSide = 1;
-                        }
-                        for (int i = startPageOfLeftSide; i < currentPage; i++)
-                        {
-                            //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
-                            builder.AppendLine(GetEnableLink(i.ToString(), i));
-                        }
-
-                        #endregion left side of current page
-
-                        #region current page
-
-                        builder.AppendLine(GetCurrentPageLink());
-
-                        #endregion current page
-
-                        #region right side of current page
-
-                        int endPageOfRightSide = currentPage + numberOfPagesRightSide;
-                        //if (startPageOfRightSide > this.pageOption.NumberOfPage)
-                        //{
-                        //    startPageOfRightSide = this.pageOption.NumberOfPage;
-                        //}
-
-                        if (endPageOfRightSide > totalPage)
-                        {
-                            endPageOfRightSide = totalPage;
-                        }
-                        for (int i = currentPage + 1; i <= endPageOfRightSide; i++)
-                        {
-                            //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
-                            builder.AppendLine(GetEnableLink(i.ToString(), i));
-                        }
-
-                        #endregion right side of current page
+                        startPageOfLeftSide = 1;
                     }
+                    for (int i = startPageOfLeftSide; i < currentPage; i++)
+                    {
+                        //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
+                        builder.AppendLine(GetEnableLink(i.ToString(), i));
+                    }
+
+                    #endregion left side of current page
+
+                    #region current page
+
+                    builder.AppendLine(GetCurrentPageLink());
+
+                    #endregion current page
+
+                    #region right side of current page
+
+                    int endPageOfRightSide = currentPage + numberOfPagesRightSide;
+
+                    if (endPageOfRightSide > totalPage)
+                    {
+                        endPageOfRightSide = totalPage;
+                    }
+                    for (int i = currentPage + 1; i <= endPageOfRightSide; i++)
+                    {
+                        //builder.AppendLine(GetEnableLink(i.ToString(), CreateHtmlLink(i)));
+                        builder.AppendLine(GetEnableLink(i.ToString(), i));
+                    }
+
+                    #endregion right side of current page
+
+                    #region Goto Next Fragment
+                    if (this.pageOptions.Goto)
+                    {
+                        int nextFragmentPage = currentPage + this.pageOptions.NumberOfPagesRightSide + 1;
+                        if (nextFragmentPage < totalPage)
+                        {
+                            builder.AppendLine(GetEnableLink("...", nextFragmentPage));
+                        }
+                    }
+                    #endregion
                 }
 
                 #endregion pages
 
-                #region Goto Next Fragment
-                if (this.pageOptions.Goto)
-                {
-                    int nextFragmentPage = currentPage + this.pageOptions.NumberOfPagesRightSide + 1;
-                    if (nextFragmentPage < totalPage)
-                    {
-                        builder.AppendLine(GetEnableLink("...", nextFragmentPage));
-                    }
-                }
-                #endregion
-
                 #region next, last link
 
-                if (this.pageOptions.DisplayNextPage)
+                if (this.pageOptions.DisplayPreviousNextPage)
                 {
                     if (currentPage < totalPage)
                     {
@@ -172,7 +165,7 @@ namespace Tam.Control.BootstrapControls.Pagination
                         builder.AppendLine(GetDisableLink(this.pageOptions.TextNextPage));
                     }
                 }
-                if (this.pageOptions.DisplayLastPage)
+                if (this.pageOptions.DisplayFirstLastPage)
                 {
                     if (currentPage < totalPage)
                     {
@@ -187,7 +180,7 @@ namespace Tam.Control.BootstrapControls.Pagination
                 #endregion next, last link
             }
             builder.AppendLine("</ul>");
-            builder.AppendLine("</nav>");
+            builder.AppendLine("</div>");
             return builder.ToString();
         }
 

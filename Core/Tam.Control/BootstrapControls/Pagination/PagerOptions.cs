@@ -10,13 +10,9 @@ namespace Tam.Control.BootstrapControls.Pagination
     {
         public int CurentPage { get; set; }
 
-        public bool DisplayFirstPage { get; set; }
+        public virtual bool DisplayFirstLastPage { get; set; }
 
-        public bool DisplayLastPage { get; set; }
-
-        public bool DisplayNextPage { get; set; }
-
-        public bool DisplayPreviousPage { get; set; }
+        public virtual bool DisplayPreviousNextPage { get; set; }
 
         public string TextLastPage { get; set; }
 
@@ -32,7 +28,7 @@ namespace Tam.Control.BootstrapControls.Pagination
 
         public int NumberOfPage { get; set; }
 
-        public bool IsShowPages { get; set; }
+        public virtual bool IsShowPages { get; set; }
 
         public int NumberOfPagesLeftSide { get; set; }
 
@@ -42,12 +38,14 @@ namespace Tam.Control.BootstrapControls.Pagination
 
         public string Page { get; set; }
 
-        public bool Goto { get; set; }
+        public virtual bool Goto { get; set; }
+
+        public PagerPosition Position { get; set; }
 
         public PagerOptions()
         {
             this.PageSize = 10;
-            this.DisplayFirstPage = this.DisplayLastPage = this.DisplayNextPage = this.DisplayPreviousPage = true;
+            this.DisplayFirstLastPage = this.DisplayPreviousNextPage = true;
             this.NumberOfPage = 5;
             this.NumberOfPagesLeftSide = this.NumberOfPagesRightSide = 2;
             this.TextFirstPage = "&laquo;";
@@ -57,6 +55,7 @@ namespace Tam.Control.BootstrapControls.Pagination
             this.IsShowPages = true;
             this.Page = "page";
             this.Size = PagerSize.Normal;
+            this.Position = PagerPosition.Left;
         }
     }
 }

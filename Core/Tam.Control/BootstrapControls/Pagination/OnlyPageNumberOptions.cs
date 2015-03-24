@@ -11,25 +11,49 @@ namespace Tam.Control.BootstrapControls.Pagination
 {
     public class OnlyPageNumberOptions : PagerOptions
     {
-
-        //public OnlyPageNumberPagination(PagerOptions pagerOptions, RouteValueDictionary routeDictionary,
-        //    ViewContext viewContext, AjaxHelper ajaxHelper = null, AjaxOptions ajaxOptions = null)
-        //    :base(pagerOptions, routeDictionary, viewContext, ajaxHelper, ajaxOptions)
-        //{
-        //    this.pageOptions.IsShowPages = true;
-        //    this.pageOptions.DisplayFirstPage = false;
-        //    this.pageOptions.DisplayLastPage = false;
-        //    this.pageOptions.DisplayNextPage = false;
-        //    this.pageOptions.DisplayPreviousPage = false;
-        //}
-
         public OnlyPageNumberOptions()
         {
+            // I break up inheritance oop
             this.IsShowPages = true;
-            this.DisplayFirstPage = false;
-            this.DisplayLastPage = false;
-            this.DisplayNextPage = false;
-            this.DisplayPreviousPage = false;
+            this.DisplayFirstLastPage = false;
+            this.DisplayPreviousNextPage = false;
         }
+
+        public override bool IsShowPages
+        {
+            get
+            {
+                return true;
+            }
+            set
+            {
+                base.IsShowPages = true;
+            }
+        }
+
+        public override bool DisplayFirstLastPage
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                base.DisplayFirstLastPage = false;
+            }
+        }
+
+        public override bool DisplayPreviousNextPage
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                base.DisplayPreviousNextPage = false;
+            }
+        }
+
     }
 }

@@ -10,8 +10,33 @@ namespace Tam.Control.BootstrapControls.Pagination
     {
         public OnlyPageControlsOptions()
         {
+            // I break up inheritance oop
             this.IsShowPages = false;
             this.Goto = false;
+        }
+
+        public override bool IsShowPages
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                base.IsShowPages = false;
+            }
+        }
+
+        public override bool Goto
+        {
+            get
+            {
+                return false;
+            }
+            set
+            {
+                base.Goto = false;
+            }
         }
     }
 }
