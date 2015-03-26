@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tam.Blog.Repository.Interface
+namespace Tam.Repository.Contraction
 {
-    public interface IConnectionStringRepository
+    public interface IConnectionString
     {
         /// <summary>
         /// Get Entity Framework connection string

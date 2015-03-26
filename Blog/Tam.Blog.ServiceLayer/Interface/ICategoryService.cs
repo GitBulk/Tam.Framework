@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tam.Blog.Model;
 
-namespace Tam.Repository.Interface
+namespace Tam.Blog.ServiceLayer.Interface
 {
-    public interface IBaseRepository
+    public interface ICategoryService: IBaseService<Category>
     {
-        string GetBackgroundTechnology();
     }
 }

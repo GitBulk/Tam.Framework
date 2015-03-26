@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Tam.Repository.Interface;
 
-namespace Tam.Repository.Implementation
+namespace Tam.Repository.EntityFramework
 {
     public class UnitOfWork : IUnitOfWork
     {

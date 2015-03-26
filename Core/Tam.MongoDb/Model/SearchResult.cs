@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Tam.Repository.Model;
+using Tam.Repository.MongoDb;
 
 namespace Tam.MongoDb.Model
 {
-    public class SearchResult<T> where T : class
-    {
-        public long TotalItem { get; set; }
-
-        public List<T> TotalResult { get; set; }
-    }
-
     public class SearchResult: SearchResult<MongoBaseEntity>
-    {
-
-    }
+    {}
 }

@@ -10,6 +10,7 @@ namespace Tam.Blog.Web
 {
     public static class BlogSettingManager
     {
+
         static Logger Logger = LogManager.GetCurrentClassLogger();
         //static string FilePath = Server.MapPath("~/App_Data/blogsettings.json");
         static object LockObject = new object();

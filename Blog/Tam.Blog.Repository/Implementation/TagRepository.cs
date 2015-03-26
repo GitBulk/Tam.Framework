@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tam.Blog.Model;
 using Tam.Blog.Repository.Interface;
-
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Repository.Implementation
 {
-    public class TagRepository : BaseRepository<Tag>, ITagRepository
+    public class TagRepository : EFBaseRepository<Tag>, ITagRepository
     {
         public TagRepository(GreatBlogEntities context)
             : base(context)
@@ -50,5 +46,6 @@ namespace Tam.Blog.Repository.Implementation
         {
             throw new NotImplementedException();
         }
+
     }
 }

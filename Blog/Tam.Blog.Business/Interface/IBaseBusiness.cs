@@ -8,11 +8,11 @@ namespace Tam.Blog.Business.Interface
 {
     public interface IBaseBusiness<T> : IBusiness where T : class
     {
-        int Add(T entity);
+        void Add(T entity);
 
-        int Delete(T entity);
+        void Delete(T entity);
 
-        int Update(T entity);
+        void Update(T entity);
 
         IEnumerable<T> GetAll();
 

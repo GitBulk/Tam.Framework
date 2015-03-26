@@ -50,13 +50,9 @@
   <ItemGroup>
     <Compile Include="Interface\ICommentRepository.cs" />
     <Compile Include="Interface\IPostRepository.cs" />
-    <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Implementation\CommentRepository.cs" />
-    <Compile Include="Interface\IMongoRepository.cs" />
     <Compile Include="MongoHelper.cs" />
-    <Compile Include="Implementation\MongoRepository.cs" />
-    <Compile Include="Interface\IMongoSetting.cs" />
     <Compile Include="Model\Post.cs" />
     <Compile Include="Implementation\PostRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

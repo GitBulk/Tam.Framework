@@ -3,8 +3,7 @@ using System.Data.Entity;
 using Tam.Blog.Model;
 using Tam.Blog.Repository.Implementation;
 using Tam.Blog.Repository.Interface;
-using Tam.Repository.Implementation;
-using Tam.Repository.Interface;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.DI
 {

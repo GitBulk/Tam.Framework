@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Tam.MongoDb.Model
+namespace Tam.Repository.MongoDb
 {
     //public interface IBaseEntity<T>
     //{

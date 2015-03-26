@@ -8,86 +8,85 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tam.Blog.Repository.Interface;
 using Tam.Database;
-using Tam.Repository.Implementation;
-using Tam.Repository.Interface;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Repository.Implementation
 {
-    public class BaseRepository<T> : EfBaseRepository<T>, IBaseRepository<T> where T : class
-    {
-        public BaseRepository(DbContext context)
-            : this(context, false, null, null)
-        { }
+    //public class BaseRepository<T> : EFBaseRepository<T>, IEntityFrameworkRepository<T> where T : class
+    //{
+    //    public BaseRepository(DbContext context)
+    //        : this(context, false, null, null)
+    //    { }
 
-        public BaseRepository(DbContext context, ISqlServerHelper sqlHelper)
-            : this(context, false, sqlHelper, null)
-        { }
+    //    public BaseRepository(DbContext context, ISqlServerHelper sqlHelper)
+    //        : this(context, false, sqlHelper, null)
+    //    { }
 
-        public BaseRepository(DbContext context, bool isSaveChage, ISqlServerHelper sqlHelper,
-            IUnitOfWork unitOfWork)
-            : base(context, isSaveChage, sqlHelper, unitOfWork)
-        {
+    //    public BaseRepository(DbContext context, bool isSaveChage, ISqlServerHelper sqlHelper,
+    //        IUnitOfWork unitOfWork)
+    //        : base(context, isSaveChage, sqlHelper, unitOfWork)
+    //    {
 
-        }
+    //    }
 
-        private static int GetMaxPageSize()
-        {
-            int maxPageSize = 50;
-            try
-            {
-                string temp = Convert.ToString(ConfigurationManager.AppSettings["MaxPageSize"]);
-                if (string.IsNullOrWhiteSpace(temp) == false)
-                {
-                    if (Information.IsNumeric(temp))
-                    {
-                        int tempPageSize = Convert.ToInt32(temp);
-                        if (tempPageSize > 0)
-                        {
-                            maxPageSize = tempPageSize;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                maxPageSize = 50;
-            }
-            return maxPageSize;
-        }
+    //    private static int GetMaxPageSize()
+    //    {
+    //        int maxPageSize = 50;
+    //        try
+    //        {
+    //            string temp = Convert.ToString(ConfigurationManager.AppSettings["MaxPageSize"]);
+    //            if (string.IsNullOrWhiteSpace(temp) == false)
+    //            {
+    //                if (Information.IsNumeric(temp))
+    //                {
+    //                    int tempPageSize = Convert.ToInt32(temp);
+    //                    if (tempPageSize > 0)
+    //                    {
+    //                        maxPageSize = tempPageSize;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        catch
+    //        {
+    //            maxPageSize = 50;
+    //        }
+    //        return maxPageSize;
+    //    }
 
-        protected override int MaxPageSize
-        {
-            get
-            {
-                int temp = GetMaxPageSize();
-                return temp;
-            }
-        }
+    //    protected override int MaxPageSize
+    //    {
+    //        get
+    //        {
+    //            int temp = GetMaxPageSize();
+    //            return temp;
+    //        }
+    //    }
 
-        public string GetEFConnectionString()
-        {
-            var temp = ConfigurationManager.ConnectionStrings["GreatBlogEntities"];
-            if (temp != null)
-            {
-                return temp.ToString();
-            }
-            return "";
-        }
+    //    public string GetEFConnectionString()
+    //    {
+    //        var temp = ConfigurationManager.ConnectionStrings["GreatBlogEntities"];
+    //        if (temp != null)
+    //        {
+    //            return temp.ToString();
+    //        }
+    //        return "";
+    //    }
 
-        public string GetSqlConnectionString()
-        {
-            //return ConnectionUtil.GetSqlConnectionString();
-            //return ConfigurationManager.ConnectionStrings["TestEntities"].ToString();
-            //return @"Data Source=TOAN-PC\SQLEXPRESS;initial catalog=Test1.1;persist security info=True;user id=sa;password=123456;multipleactiveresultsets=True;";
+    //    public string GetSqlConnectionString()
+    //    {
+    //        //return ConnectionUtil.GetSqlConnectionString();
+    //        //return ConfigurationManager.ConnectionStrings["TestEntities"].ToString();
+    //        //return @"Data Source=TOAN-PC\SQLEXPRESS;initial catalog=Test1.1;persist security info=True;user id=sa;password=123456;multipleactiveresultsets=True;";
 
-            var temp = ConfigurationManager.ConnectionStrings["GreatBlogSql"];
-            if (temp != null)
-            {
-                return temp.ToString();
-            }
-            return "";
-        }
-    }
+    //        var temp = ConfigurationManager.ConnectionStrings["GreatBlogSql"];
+    //        if (temp != null)
+    //        {
+    //            return temp.ToString();
+    //        }
+    //        return "";
+    //    }
+    //}
 
     //public class BaseRepository<T> : IBaseRepository<T> where T : class
     //{

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver.Builders;
+﻿using MongoDB.Bson;
+using MongoDB.Driver.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tam.MongoDb.Interface;
 using Tam.MongoDb.Model;
+using Tam.Repository.MongoDb;
 
 namespace Tam.MongoDb.Implementation
 {
@@ -17,14 +19,16 @@ namespace Tam.MongoDb.Implementation
 
         }
 
-        public override List<Post> Get(System.Linq.Expressions.Expression<Func<Post, bool>> condition = null, Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = null)
+
+        public override IEnumerable<Post> GetItems(System.Linq.Expressions.Expression<Func<Post, bool>> filter = null, Func<IQueryable<Post>, IOrderedQueryable<Post>> orderBy = null, string includeProperties = "")
         {
             return this.Collection.FindAll().SetFields(Fields.Exclude("Comments")).SetSortOrder(SortBy.Descending("Date")).ToList();
         }
 
-        public override Post GetById(MongoDB.Bson.ObjectId id)
+        public override Post GetById(object id)
         {
-            var post = this.Collection.Find(Query.EQ("_id", id)).SetFields(Fields.Slice("Comments", -5)).SingleOrDefault();
+            BsonValue value = ConvertToMongoObjectId(id);
+            var post = this.Collection.Find(Query.EQ("_id", value)).SetFields(Fields.Slice("Comments", -5)).SingleOrDefault();
             if (post != null)
             {
                 post.Comments = post.Comments.OrderByDescending(c => c.CreatedDate).ToList();
@@ -42,26 +46,23 @@ namespace Tam.MongoDb.Implementation
             return post;
         }
 
-        public override Post Update(Post item)
+        public override void Update(Post item)
         {
-            //var query = Query<Post>.EQ(i => i.Id, item.Id);
-            //var update = Update<Post>.Set<string>(p => p.Title, item.Title)
-            //    .Set<string>(p => p.Url)
-            //WriteConcernResult result = this.Collection.Update(query, update);
-            //return item;
             Post postFromDb = base.GetById(item.Id);
             postFromDb.Title = item.Title;
             postFromDb.Url = item.Url;
             postFromDb.Summary = item.Summary;
             postFromDb.Details = item.Details;
             base.Update(postFromDb);
-            return postFromDb;
         }
 
-        public override Post Add(Post item)
+        public override void Add(Post item)
         {
-            item.Comments = new List<Comment>();
-            return base.Add(item);
+            if (item.Comments == null)
+            {
+                item.Comments = new List<Comment>();
+            }
+            base.Add(item);
         }
     }
 }

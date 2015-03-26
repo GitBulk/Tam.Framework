@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Tam.Blog.Model;
 using Tam.Blog.Repository.Interface;
 using Tam.Database;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Repository.Implementation
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class CategoryRepository : EFBaseRepository<Category>, ICategoryRepository
     {
         public CategoryRepository(GreatBlogEntities context, ISqlServerHelper sqlHelper)
             : base(context, sqlHelper)

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tam.Blog.Business.Interface;
+﻿using Tam.Blog.Business.Interface;
 using Tam.Blog.Model;
 using Tam.Blog.Repository.Interface;
-using Tam.Repository.Interface;
-using Tam.Util;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Business.Implementation
 {

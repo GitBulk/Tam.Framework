@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Tam.Blog.Model;
 using Tam.Blog.Model.EnumCollection;
 using Tam.Blog.ViewModel;
-
+using Tam.Repository.Contraction;
 
 namespace Tam.Blog.Repository.Interface
 {

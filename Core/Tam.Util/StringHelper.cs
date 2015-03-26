@@ -90,6 +90,10 @@ namespace Tam.Util
             // convert one space into hyphen
             temp = Regex.Replace(temp, @"\s", "-");
 
+            if (temp.Length > 45)
+            {
+                temp = temp.Substring(0, 45);
+            }
             return temp;
         }
 

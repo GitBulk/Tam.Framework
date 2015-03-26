@@ -7,7 +7,7 @@ using Tam.Blog.Cache.Interface;
 using Tam.Blog.Model;
 using Tam.Blog.Model.EnumCollection;
 using Tam.Blog.Repository.Interface;
-using Tam.Repository.Interface;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Business.Implementation
 {
@@ -149,7 +149,7 @@ namespace Tam.Blog.Business.Implementation
             return await this.postRepository.GetNewestItemAsyncs(take);
         }
 
-        public override int Update(Post entity)
+        public override void Update(Post entity)
         {
             if (entity == null)
             {
@@ -161,11 +161,11 @@ namespace Tam.Blog.Business.Implementation
             {
                 this.postCache.Update(entity.Id.ToString(), entity, CacheTimeInMinute);
             }
-            return result;
+            //return result;
             //return base.Update(entity);
         }
 
-        public override int Delete(Post entity)
+        public override void Delete(Post entity)
         {
             if (entity == null)
             {
@@ -179,11 +179,11 @@ namespace Tam.Blog.Business.Implementation
             {
                 this.postCache.Delete(entity.Id.ToString());
             }
-            return result;
+            //return result;
             //return base.Delete(entity);
         }
 
-        public override int Add(Post entity)
+        public override void Add(Post entity)
         {
             if (entity == null)
             {
@@ -196,7 +196,7 @@ namespace Tam.Blog.Business.Implementation
             {
                 this.postCache.Add(entity.Id.ToString(), entity, CacheTimeInMinute);
             }
-            return result;
+            //return result;
             //return base.Add(entity);
         }
     }

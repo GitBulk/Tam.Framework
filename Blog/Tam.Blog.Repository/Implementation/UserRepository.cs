@@ -9,12 +9,12 @@ using Tam.Blog.Repository.Interface;
 using Tam.Blog.Resource;
 using Tam.Blog.ViewModel;
 using Tam.Database;
-using Tam.Repository.Interface;
+using Tam.Repository.EntityFramework;
 using Tam.Util;
 
 namespace Tam.Blog.Repository.Implementation
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : EFBaseRepository<User>, IUserRepository
     {
         //ISqlServerHelper sqlHelper;
 

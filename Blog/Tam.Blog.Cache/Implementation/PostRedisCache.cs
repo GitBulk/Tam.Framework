@@ -54,7 +54,7 @@ namespace Tam.Blog.Cache.Implementation
             // Set key to hold the string value. If key already holds a value, it is overwritten (update), regardless of its type
             // http://redis.io/commands/set
             redisClient.SetObject(key, entity, TimeSpan.FromMinutes(expiredTime));
-            
+
             double score = BitConverter.ToDouble(entity.DataRowVersion, 0);
             redisClient.SortedSetAdd(SortedSetIdsKey, valueOfId, score);
             //base.Add(valueOfId, entity, expiredTime);

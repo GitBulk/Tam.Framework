@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tam.Blog.Model;
+﻿using Tam.Blog.Model;
+using Tam.Repository.Contraction;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Repository.Interface
 {

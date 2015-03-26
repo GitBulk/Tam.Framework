@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using Tam.Blog.Model;
 using Tam.Blog.Repository.Interface;
 using Tam.Database;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Repository.Implementation
 {
-    public class PostRepository : BaseRepository<Post>, IPostRepository
+    public class PostRepository : EFBaseRepository<Post>, IPostRepository
     {
         public PostRepository(GreatBlogEntities context, ISqlServerHelper sqlHelper)
             : base(context, sqlHelper)

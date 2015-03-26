@@ -26,7 +26,7 @@ namespace Tam.Blog.Web
 
         private static void OnlyUseRazorViewEngine()
         {
-            System.Web.Hosting.HostingEnvironment.RegisterVirtualPathProvider(new CustomeVirtualProviderPath());
+            System.Web.Hosting.HostingEnvironment.RegisterVirtualPathProvider(new CustomVirtualProviderPath());
             var engine = new RazorViewEngine();
             //engine.ViewLocationFormats = new[] { "~/bin/Views/{1}/{0}.cshtml", "~/Views/Shared/{0}.cshtml" };
             //engine.PartialViewLocationFormats = engine.ViewLocationFormats;

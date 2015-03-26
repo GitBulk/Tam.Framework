@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using Tam.Blog.Business.Interface;
 using Tam.Blog.Cache.Interface;
-using Tam.Blog.Repository.Interface;
 using Tam.Database;
-using Tam.Repository.Interface;
+using Tam.Repository.Contraction;
+using Tam.Repository.EntityFramework;
 
 namespace Tam.Blog.Business.Implementation
 {
@@ -64,24 +64,24 @@ namespace Tam.Blog.Business.Implementation
             this.baseCache = baseCache;
         }
 
-        public virtual int Add(T entity)
+        public virtual void Add(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("Entity");
             }
             this.baseRepository.Add(entity);
-            return this.unitOfWork.SaveChanges();
+            this.unitOfWork.SaveChanges();
         }
 
-        public virtual int Delete(T entity)
+        public virtual void Delete(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("Entity");
             }
             this.baseRepository.Delete(entity);
-            return this.unitOfWork.SaveChanges();
+            this.unitOfWork.SaveChanges();
         }
 
         public virtual IEnumerable<T> GetAll()
@@ -100,14 +100,14 @@ namespace Tam.Blog.Business.Implementation
             return item;
         }
 
-        public virtual int Update(T entity)
+        public virtual void Update(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("Entity");
             }
             this.baseRepository.Update(entity);
-            return this.unitOfWork.SaveChanges();
+            this.unitOfWork.SaveChanges();
         }
     }
 }

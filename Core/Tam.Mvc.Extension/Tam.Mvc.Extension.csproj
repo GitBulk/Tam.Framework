@@ -71,10 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoostrapPager\Pager.cs" />
-    <Compile Include="BoostrapPager\PagerExtension.cs" />
-    <Compile Include="BoostrapPager\PagerOptions.cs" />
-    <Compile Include="BoostrapPager\Size.cs" />
     <Compile Include="FeedResult.cs" />
     <Compile Include="PartialViewHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,9 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="BoostrapPager\Read me.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

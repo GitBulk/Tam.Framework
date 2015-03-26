@@ -16,10 +16,10 @@ namespace Tam.Redis
         private static ConnectionMultiplexer instance;
         private static volatile object LockObject = new object();
 
-        public SingletonRedisConnection()
-        {
-            this.redisConnectionString = "";
-        }
+        //public SingletonRedisConnection()
+        //{
+        //    this.redisConnectionString = "";
+        //}
 
         public SingletonRedisConnection(ConfigurationOptions options)
         {

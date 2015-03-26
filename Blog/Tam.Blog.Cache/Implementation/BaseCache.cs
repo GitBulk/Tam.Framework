@@ -1,13 +1,8 @@
 ﻿using NLog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tam.Blog.Cache.Interface;
-using Tam.Blog.Repository.Interface;
 using Tam.Cache;
-using Tam.Util;
+using Tam.Repository.Contraction;
 
 namespace Tam.Blog.Cache.Implementation
 {

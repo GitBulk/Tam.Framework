@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tam.MongoDb.Interface;
+using Tam.Repository.MongoDb;
 
 namespace Tam.MongoDb
 {

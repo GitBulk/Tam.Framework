@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tam.MongoDb.Interface
+namespace Tam.Repository.MongoDb
 {
     public interface IMongoSetting
     {
