@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Tam.Control.BootstrapControls.Pagination
 {
-    public class OnlyPageControlsOptions : PagerOptions
+    public class OnlyPageControlsOption : PagerOption
     {
-        public OnlyPageControlsOptions()
+        public OnlyPageControlsOption()
         {
             // I break up inheritance oop
             this.IsShowPages = false;

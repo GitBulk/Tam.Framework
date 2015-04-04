@@ -11,7 +11,7 @@ namespace Tam.Control.BootstrapControls.Pagination
 {
     public static class PagerExtension
     {
-        public static MvcHtmlString SetPager(this AjaxHelper ajaxHelper, PagerOptions option, AjaxOptions ajaxOptions, object values)
+        public static MvcHtmlString SetPager(this AjaxHelper ajaxHelper, PagerOption option, AjaxOptions ajaxOptions, object values = null)
         {
             if (option.CurentPage < 1)
             {
@@ -30,7 +30,7 @@ namespace Tam.Control.BootstrapControls.Pagination
             return MvcHtmlString.Create(pager.BuildLinks());
         }
 
-        public static MvcHtmlString SetPager(this HtmlHelper helper, PagerOptions option, object values)
+        public static MvcHtmlString SetPager(this HtmlHelper helper, PagerOption option, object values = null)
         {
             if (option.CurentPage < 1)
             {

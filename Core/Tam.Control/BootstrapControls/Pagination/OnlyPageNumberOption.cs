@@ -9,9 +9,9 @@ using System.Web.Routing;
 
 namespace Tam.Control.BootstrapControls.Pagination
 {
-    public class OnlyPageNumberOptions : PagerOptions
+    public class OnlyPageNumberOption : PagerOption
     {
-        public OnlyPageNumberOptions()
+        public OnlyPageNumberOption()
         {
             // I break up inheritance oop
             this.IsShowPages = true;

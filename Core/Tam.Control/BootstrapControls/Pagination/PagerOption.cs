@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tam.Control.BootstrapControls.Pagination
 {
-    public class PagerOptions
+    public class PagerOption
     {
         public int CurentPage { get; set; }
 
@@ -24,7 +24,7 @@ namespace Tam.Control.BootstrapControls.Pagination
 
         public int PageSize { get; set; }
 
-        public int TotalResult { get; set; }
+        public int TotalItems { get; set; }
 
         public int NumberOfPage { get; set; }
 
@@ -40,9 +40,11 @@ namespace Tam.Control.BootstrapControls.Pagination
 
         public virtual bool Goto { get; set; }
 
-        public PagerPosition Position { get; set; }
+        public PagerAlignment Alignment { get; set; }
 
-        public PagerOptions()
+        public bool UseBoostrapPagerStyle { get; set; }
+
+        public PagerOption()
         {
             this.PageSize = 10;
             this.DisplayFirstLastPage = this.DisplayPreviousNextPage = true;
@@ -55,7 +57,7 @@ namespace Tam.Control.BootstrapControls.Pagination
             this.IsShowPages = true;
             this.Page = "page";
             this.Size = PagerSize.Normal;
-            this.Position = PagerPosition.Left;
+            this.Alignment = PagerAlignment.Left;
         }
     }
 }

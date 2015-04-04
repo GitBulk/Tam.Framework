@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Tam.Control.BootstrapControls.Pagination
 {
-    public enum PagerPosition
+    public enum PagerAlignment
     {
-        Centered,
+        Center,
         Left,
         Right
     }

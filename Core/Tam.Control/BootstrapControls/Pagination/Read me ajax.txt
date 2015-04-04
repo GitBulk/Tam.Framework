@@ -1,0 +1,68 @@
+﻿0. Install Jquery unobtrosive
+	- Using Nutget Package
+	- Modifying BundleConfig
+		bundles.Add(new ScriptBundle("~/bundles/jqueryunob").Include(
+                        "~/Scripts/jquery.unobtrusive*"));
+
+1. Create ActionResult
+
+public ActionResult Index(int page = 1)
+{
+    ViewBag.CurrentPage = page;
+    if (Request.IsAjaxRequest())
+        return PartialView("_AjaxPagingPartial");
+    else
+        return View();
+}
+
+2. Create View for Action Index
+
+AREA
+<div id="grid-list">
+    @{ Html.RenderPartial("_AjaxPagingPartial");}
+</div>
+<script type="text/javascript">
+
+    function beginPaging(args) {
+        // Animate
+        $('#grid-list').fadeOut('normal');
+    }
+
+    function successPaging() {
+        // Animate
+        $('#grid-list').fadeIn('normal');
+        //$('a').tooltip();
+    }
+
+    function failurePaging() {
+        alert("Could not retrieve list.");
+    }
+
+</script>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryunob")
+}
+
+3. Creata Partial View
+
+<h1>
+    <span style="color:red">
+        @ViewBag.CurrentPage
+    </span>
+</h1>
+@Ajax.SetPager(
+    new PagerOption
+    {
+        CurentPage = ViewBag.CurrentPage,
+        TotalItems = 38 // hard code for demo
+    },
+    new AjaxOptions
+    {
+        UpdateTargetId = "grid-list",
+        OnFailure = "failurePaging",
+        OnSuccess = "successPaging",
+        HttpMethod = "GET"
+    },
+    new { controller = "PagerArea", action = "Index" }
+)

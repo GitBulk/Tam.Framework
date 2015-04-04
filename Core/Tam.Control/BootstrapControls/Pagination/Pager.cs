@@ -19,7 +19,7 @@ namespace Tam.Control.BootstrapControls.Pagination
         /// </summary>
         protected int totalResult;
 
-        protected PagerOptions pageOptions;
+        protected PagerOption pageOptions;
 
         protected RouteValueDictionary routeDictionary;
 
@@ -28,12 +28,12 @@ namespace Tam.Control.BootstrapControls.Pagination
         protected AjaxHelper ajaxHelper;
         protected AjaxOptions ajaxOptions;
 
-        public Pager(PagerOptions pagerOptions, RouteValueDictionary routeDictionary,
+        public Pager(PagerOption pagerOptions, RouteValueDictionary routeDictionary,
             ViewContext viewContext, AjaxHelper ajaxHelper = null, AjaxOptions ajaxOptions = null)
         {
             this.pageSize = pagerOptions.PageSize;
             this.pageOptions = pagerOptions;
-            this.totalResult = pagerOptions.TotalResult;
+            this.totalResult = pagerOptions.TotalItems;
             this.routeDictionary = routeDictionary;
             this.viewContext = viewContext;
             this.ajaxHelper = ajaxHelper;
@@ -43,12 +43,12 @@ namespace Tam.Control.BootstrapControls.Pagination
         public virtual string BuildLinks()
         {
             var builder = new StringBuilder();
-            builder.AppendLine(string.Format("<div class=\"pagination-{0}\">", this.pageOptions.Position.ToString().ToLower()));
+            builder.AppendLine(string.Format("<div class=\"text-{0}\">", this.pageOptions.Alignment.ToString().ToLower()));
             builder.AppendLine(string.Format("<ul class=\"pagination{0}\">", GetPagerSize(this.pageOptions.Size)));
             int currentPage = this.pageOptions.CurentPage;
             int numberOfPage = this.pageOptions.NumberOfPage;
 
-            int totalPage = (int)Math.Ceiling((double)this.pageOptions.TotalResult / (double)this.pageOptions.PageSize);
+            int totalPage = (int)Math.Ceiling((double)this.pageOptions.TotalItems / (double)this.pageOptions.PageSize);
 
             if (totalPage == 1)
             {
