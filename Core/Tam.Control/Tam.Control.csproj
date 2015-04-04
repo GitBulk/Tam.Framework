@@ -73,8 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BootstrapControls\Pagination\OnlyPageControlsOption.cs" />
-    <Compile Include="BootstrapControls\Pagination\OnlyPageNumberOption.cs" />
     <Compile Include="BootstrapControls\Pagination\Pager.cs" />
     <Compile Include="BootstrapControls\Pagination\PagerExtension.cs" />
     <Compile Include="BootstrapControls\Pagination\PagerOption.cs" />
