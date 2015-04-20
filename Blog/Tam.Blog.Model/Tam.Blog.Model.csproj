@@ -67,6 +67,7 @@
     <Compile Include="EnumCollection\LoginResult.cs" />
     <Compile Include="EnumCollection\PostStatus.cs" />
     <Compile Include="EnumCollection\UserStatus.cs" />
+    <Compile Include="GreatBlogEntities.cs" />
     <Compile Include="GreatBlogModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
