@@ -8,9 +8,9 @@ namespace Tam.MongoDb.Interface
 {
     public interface ICommentRepository : IMongoRepository<Comment>
     {
-        void AddComment(ObjectId postId, Comment comment);
-        List<Comment> GetComments(ObjectId postId, int skip, int take, int totalComments);
+        //void AddComment(ObjectId postId, Comment comment);
+        //List<Comment> GetComments(ObjectId postId, int skip, int take, int totalComments);
         int GetTotalComments(ObjectId postId);
-        void RemoveComment(ObjectId postId, ObjectId commentId);
+        //void RemoveComment(ObjectId postId, ObjectId commentId);
     }
 }

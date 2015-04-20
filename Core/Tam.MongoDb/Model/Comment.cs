@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using Tam.Repository.MongoDb;
 
 namespace Tam.MongoDb.Model
@@ -10,5 +11,7 @@ namespace Tam.MongoDb.Model
         public string Author { get; set; }
 
         public string Detail { get; set; }
+
+        public ObjectId PostId { get; set; }
     }
 }

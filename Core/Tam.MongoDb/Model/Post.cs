@@ -24,6 +24,6 @@ namespace Tam.MongoDb.Model
 
         public int TotalComments { get; set; }
 
-        public IList<Comment> Comments { get; set; }
+        //public IList<Comment> Comments { get; set; }
     }
 }
