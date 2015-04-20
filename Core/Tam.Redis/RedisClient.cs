@@ -194,7 +194,7 @@ namespace Tam.Redis
             //http://redis.io/commands/zrangebyscore
             SortedSetEntry[] entries = this.database.SortedSetRangeByScoreWithScores(key, order: Order.Descending);
             Dictionary<string, double> members = null;
-            if (entries != null && entries.Length > 0)
+            if (entries != null && entries.Any())
             {
                 members = new Dictionary<string, double>();
                 foreach (var item in entries)
@@ -219,7 +219,7 @@ namespace Tam.Redis
                 keys[i] = arrayKey[i];
             }
             RedisValue[] items = this.database.StringGet(keys);
-            if (items != null && items.Length > 0)
+            if (items != null && items.Any())
             {
                 result = new List<string>();
                 foreach (var item in items)
@@ -245,7 +245,7 @@ namespace Tam.Redis
                 keys[i] = arrayKey[i];
             }
             RedisValue[] items = this.database.StringGet(keys);
-            if (items != null && items.Length > 0)
+            if (items != null && items.Any())
             {
                 result = new Dictionary<string, string>();
                 int index = 0;
@@ -259,16 +259,16 @@ namespace Tam.Redis
         }
 
 
-        public List<string> SortedSetGetAllMembers(bool ascending, string key, int start, int stop)
+        public List<string> SortedSetGetAllMembers(bool ascending, string key, int start = 0, int stop = -1)
         {
             if (key == null)
             {
                 return null;
             }
             Order order = (ascending ? Order.Ascending : Order.Descending);
-            RedisValue [] items = this.database.SortedSetRangeByRank(key, start, stop, order);
+            RedisValue[] items = this.database.SortedSetRangeByRank(key, start, stop, order);
             List<string> result = null;
-            if (items != null && items.Length > 0)
+            if (items != null && items.Any())
             {
                 result = new List<string>();
                 foreach (var item in items)
@@ -304,7 +304,7 @@ namespace Tam.Redis
                 redisKeys[i] = keys[i];
             }
             RedisValue[] items = this.database.StringGet(redisKeys);
-            if (items != null && items.Length > 0)
+            if (items != null && items.Any())
             {
                 result = new List<T>();
                 foreach (var item in items)
@@ -350,6 +350,68 @@ namespace Tam.Redis
         {
             return 1;
         }
+
+        public void SortedSetAdd<T>(string key, T item, double score) where T : class
+        {
+            string member = this.serializer.Serialize<T>(item);
+            this.database.SortedSetAdd(key, member, score);
+        }
+
+
+        public async Task SortedSetAddAsync<T>(string key, T item, double score) where T : class
+        {
+            string member = this.serializer.Serialize<T>(item);
+            await this.database.SortedSetAddAsync(key, member, score);
+        }
+
+
+        public async Task<int> SortedSetCountAllMemberAsync(string key)
+        {
+            return await Task.FromResult<int>(1);
+        }
+
+
+        public List<T> SortedSetGetAllMembers<T>(bool ascending, string key, int start = 0, int stop = -1) where T : class
+        {
+            if (key == null)
+            {
+                return null;
+            }
+            Order order = (ascending ? Order.Ascending : Order.Descending);
+            RedisValue[] items = this.database.SortedSetRangeByRank(key, start, stop, order);
+            List<T> result = null;
+            if (items != null && items.Any())
+            {
+                result = new List<T>();
+                foreach (var item in items)
+                {
+                    result.Add(this.serializer.Deserialize<T>(item.ToString()));
+                }
+            }
+            return result;
+        }
+
+
+        public async Task<List<T>> wer<T>(bool ascending, string key, int start = 0, int stop = -1) where T : class
+        {
+            if (key == null)
+            {
+                return null;
+            }
+            Order order = (ascending ? Order.Ascending : Order.Descending);
+            RedisValue[] items = await this.database.SortedSetRangeByRankAsync(key, start, stop, order);
+            List<T> result = null;
+            if (items != null && items.Any())
+            {
+                result = new List<T>();
+                foreach (var item in items)
+                {
+                    result.Add(this.serializer.Deserialize<T>(item.ToString()));
+                }
+            }
+            return await Task.FromResult<List<T>>(result);
+        }
+
     }
 
 }

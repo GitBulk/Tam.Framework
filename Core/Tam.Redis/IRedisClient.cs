@@ -54,6 +54,10 @@ namespace Tam.Redis
 
         void SortedSetAdd(string key, string memberName, double score);
 
+        void SortedSetAdd<T>(string key, T memberName, double score) where T: class;
+
+        Task SortedSetAddAsync<T>(string key, T item, double score) where T : class;
+
         double? SortedSetGetScore(string key, string memberName);
 
         void SortedSetIncrement(string key, string memberName, double score);
@@ -72,10 +76,16 @@ namespace Tam.Redis
 
         IDictionary<string, string> StringMultiGetWithKey(params string[] arrayKey);
 
-        List<string> SortedSetGetAllMembers(bool ascending, string key, int start, int stop);
+        List<string> SortedSetGetAllMembers(bool ascending, string key, int start = 0, int stop = -1);
+
+        List<T> SortedSetGetAllMembers<T>(bool ascending, string key, int start = 0, int stop = -1) where T: class;
 
         void Remove(params string[] arrayKey);
 
         int SortedSetCountAllMember(string key);
+
+        Task<int> SortedSetCountAllMemberAsync(string key);
+
+        Task<List<T>> wer<T>(bool ascending, string key, int start = 0, int stop = -1) where T : class;
     }
 }
