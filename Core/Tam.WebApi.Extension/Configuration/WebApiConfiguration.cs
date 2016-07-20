@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Tam.WebApi.Extension.Configuration
 {
-    public static class WebApiUtil
+    public static class WebApiConfiguration
     {
         public static void EnableCamelCasePropertyNames(this HttpConfiguration config)
         {

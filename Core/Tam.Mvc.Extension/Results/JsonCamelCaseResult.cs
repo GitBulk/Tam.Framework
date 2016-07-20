@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Tam.Mvc.Extension
+namespace Tam.Mvc.Extension.Results
 {
     public class JsonCamelCaseResult : ActionResult
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Xml;
 
-namespace Tam.Mvc.Extension
+namespace Tam.Mvc.Extension.Results
 {
     public class FeedResult : ActionResult
     {

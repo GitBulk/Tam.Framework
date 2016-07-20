@@ -120,7 +120,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="Configuration\WebApiUtil.cs" />
+    <Compile Include="Configuration\WebApiConfiguration.cs" />
     <Compile Include="Filter\ValidateMimeMultipartContentFilter.cs" />
     <Compile Include="Routing\AreaRegistrationContextExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
