@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\FormExtension.cs" />
     <Compile Include="FeedResult.cs" />
     <Compile Include="JsonCamelCaseResult.cs" />
     <Compile Include="PartialViewHelper.cs" />
