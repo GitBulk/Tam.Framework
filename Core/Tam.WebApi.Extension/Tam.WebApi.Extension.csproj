@@ -120,8 +120,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="BaseRestfulHttpClient.cs" />
     <Compile Include="Configuration\WebApiConfiguration.cs" />
     <Compile Include="Filter\ValidateMimeMultipartContentFilter.cs" />
+    <Compile Include="IBaseRestfulHttpClient.cs" />
     <Compile Include="Routing\AreaRegistrationContextExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
