@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Tam.Util
 {
@@ -200,7 +201,7 @@ namespace Tam.Util
 
         public static bool HasValue(this string value)
         {
-            return !string.IsNullOrWhiteSpace(value);
+            return !string.IsNullOrEmpty(value);
         }
 
         public static string Truncate(this string text, int maxCharacters, string trailingText = "...")
@@ -224,6 +225,27 @@ namespace Tam.Util
                 return string.Empty;
             }
             return string.Join(",", value);
+        }
+
+        public static string UrlEncode(this string input)
+        {
+            return input.HasValue() ? HttpUtility.UrlEncode(input) : input;
+        }
+
+        public static string HtmlEncode(this string input)
+        {
+            return input.HasValue() ? HttpUtility.HtmlEncode(input) : input;
+        }
+
+        public static string HtmlDecode(this string input)
+        {
+            return input.HasValue() ? HttpUtility.HtmlDecode(input) : input;
+        }
+
+        public static bool IsGuid(this string input)
+        {
+            Guid guid;
+            return Guid.TryParse(input, out guid);
         }
     }
 }
