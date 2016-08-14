@@ -83,7 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\JsonpResult.cs" />
     <Compile Include="SelectListItemHelper.cs" />
-    <Compile Include="TamController.cs" />
+    <Compile Include="ControllerCore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

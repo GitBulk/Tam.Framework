@@ -9,31 +9,31 @@ using Tam.Mvc.Extension.Results;
 
 namespace Tam.Mvc.Extension
 {
-    public class TamController : Controller
+    public class ControllerCore : Controller
     {
-        public ViewResult PageBadRequest()
+        protected ViewResult PageBadRequest()
         {
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return View("Error");
         }
 
-        public ContentResult ContentError(string message)
+        protected ContentResult ContentError(string message)
         {
             Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return Content(message);
         }
 
-        public JsonpResult Jsonp(object data)
+        protected JsonpResult Jsonp(object data)
         {
             return Jsonp(data, null);
         }
 
-        public JsonpResult Jsonp(object data, string contentType)
+        protected JsonpResult Jsonp(object data, string contentType)
         {
             return Jsonp(data, contentType, null);
         }
 
-        public JsonpResult Jsonp(object data, string contentType, Encoding contentEncoding)
+        protected JsonpResult Jsonp(object data, string contentType, Encoding contentEncoding)
         {
             return new JsonpResult(data)
             {
@@ -42,13 +42,13 @@ namespace Tam.Mvc.Extension
             };
         }
 
-        public JsonResult JsonError(object toSerialize)
+        protected JsonResult JsonError(object toSerialize)
         {
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return Json(toSerialize);
         }
 
-        public JsonResult JsonError(string message)
+        protected JsonResult JsonError(string message)
         {
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return Json(new { ErrorMessage = message });
@@ -57,12 +57,11 @@ namespace Tam.Mvc.Extension
         /// <summary>
         /// Answers a null object w/ content type as "application/json" and a response code 404.
         /// </summary>
-        public JsonResult JsonNotFound()
+        protected JsonResult JsonNotFound()
         {
             return JsonNotFound(null);
         }
-
-        public JsonResult JsonNotFound(object toSerialize)
+        protected JsonResult JsonNotFound(object toSerialize)
         {
             Response.StatusCode = (int)HttpStatusCode.NotFound;
             return Json(toSerialize);
@@ -71,22 +70,21 @@ namespace Tam.Mvc.Extension
         /// <summary>
         /// Answers the string "404" with response code 404.
         /// </summary>
-        public ContentResult TextPlainNotFound()
+        protected ContentResult TextPlainNotFound()
         {
             return TextPlainNotFound("404");
         }
 
-        public ContentResult TextPlainNotFound(string message)
+        protected ContentResult TextPlainNotFound(string message)
         {
             Response.StatusCode = (int)HttpStatusCode.NotFound;
             return TextPlain(message);
         }
 
-
         /// <summary>
         /// returns ContentResult with the parameter 'content' as its payload and "text/plain" as media type.
         /// </summary>
-        public ContentResult TextPlain(object content)
+        protected ContentResult TextPlain(object content)
         {
             return new ContentResult { Content = content.ToString(), ContentType = "text/plain" };
         }
