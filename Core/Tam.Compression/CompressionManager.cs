@@ -6,6 +6,7 @@ namespace Tam.Compression
     // http://blog.developers.ba/asp-net-web-api-gzip-compression-actionfilter/
     public class CompressionManager
     {
+
         private const string ContentEncoding = "Content-Encoding";
         private const string AcceptEncoding = "Accept-Encoding";
         private const string GzipMode = "gzip";
