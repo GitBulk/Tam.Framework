@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Web;
 
 namespace Tam.Compression
 {
@@ -11,34 +6,40 @@ namespace Tam.Compression
     // http://blog.developers.ba/asp-net-web-api-gzip-compression-actionfilter/
     public class CompressionManager
     {
+        private const string ContentEncoding = "Content-Encoding";
+        private const string AcceptEncoding = "Accept-Encoding";
+        private const string GzipMode = "gzip";
+        private const string DeflateMode = "deflate";
+        private const string VaryHeader = "Vary";
+
         public static void GZipEncodePage()
         {
             HttpResponse response = HttpContext.Current.Response;
-            if (IsGZipSupported())
+            if (IsGzipSupported())
             {
-                string acceptEncoding = HttpContext.Current.Request.Headers["Accept-Encoding"];
-                response.Filter = new System.IO.Compression.GZipStream(response.Filter,
-                        System.IO.Compression.CompressionMode.Compress);
-                response.Headers.Remove("Content-Encoding");
-                if (acceptEncoding.Contains("gzip"))
+                string acceptEncoding = HttpContext.Current.Request.Headers[AcceptEncoding];
+                if (acceptEncoding.Contains(GzipMode))
                 {
-                    response.AppendHeader("Content-Encoding", "gzip");
+                    response.Filter = new System.IO.Compression.GZipStream(response.Filter, System.IO.Compression.CompressionMode.Compress);
+                    response.Headers.Remove(ContentEncoding);
+                    response.AppendHeader(ContentEncoding, GzipMode);
                 }
                 else
                 {
-                    response.AppendHeader("Content-Encoding", "deflate");
+                    response.Filter = new System.IO.Compression.DeflateStream(response.Filter, System.IO.Compression.CompressionMode.Compress);
+                    response.Headers.Remove(ContentEncoding);
+                    response.AppendHeader(ContentEncoding, DeflateMode);
                 }
             }
-
-            // Allow proxy servers to cache encoded and unencoded versions separately
-            response.AppendHeader("Vary", "Content-Encoding");
+            // Allow proxy servers to cache encoded and unencoded versions separately.
+            response.AppendHeader(VaryHeader, ContentEncoding);
         }
 
-        public static bool IsGZipSupported()
+        public static bool IsGzipSupported()
         {
-            string acceptEncoding = HttpContext.Current.Request.Headers["Accept-Enconding"];
-            if (string.IsNullOrEmpty(acceptEncoding) == false &&
-                (acceptEncoding.Contains("gzip") || acceptEncoding.Contains("deflate")))
+            string acceptEncoding = HttpContext.Current.Request[AcceptEncoding];
+            if (!string.IsNullOrEmpty(acceptEncoding) &&
+                (acceptEncoding.Contains(GzipMode) || acceptEncoding.Contains(DeflateMode)))
             {
                 return true;
             }
