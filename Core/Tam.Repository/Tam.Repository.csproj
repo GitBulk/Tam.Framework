@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contraction\IReadOnlyAsyncRepository.cs" />
     <Compile Include="EntityFramework\EFBaseRepository.cs" />
     <Compile Include="Contraction\IConnectionString.cs" />
     <Compile Include="EntityFramework\UnitOfWork.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Contraction\ICrudAsyncRepository.cs" />
     <Compile Include="Contraction\ICrudRepository.cs" />
     <Compile Include="EntityFramework\IUnitOfWork.cs" />
+    <Compile Include="Extension\IReadOnlyAsyncRepositoryExtensions.cs" />
     <Compile Include="Model\SearchResult.cs" />
     <Compile Include="MongoDb\BaseEntity.cs" />
     <Compile Include="MongoDb\IMongoRepository.cs" />

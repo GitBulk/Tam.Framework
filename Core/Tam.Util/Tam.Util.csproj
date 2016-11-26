@@ -41,6 +41,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -82,9 +83,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="CryptorEngine.cs" />
     <Compile Include="DateTimeHelper.cs" />
     <Compile Include="DirectoryHerlper.cs" />
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="FileConfigHelper.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="HashSetHelper.cs" />

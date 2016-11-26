@@ -112,7 +112,6 @@ namespace Tam.Util
             return result;
         }
 
-
         public static string GetUserAgent()
         {
             return HttpContext.Current.Request.UserAgent;
@@ -211,7 +210,7 @@ namespace Tam.Util
             // \b: matches a word boundary
             // (?: ...) is everything inside the bracket won't be captured.
             // https?://|www: http or https or www are ok
-            // \S: match a series of non-whitespace characters            
+            // \S: match a series of non-whitespace characters
             // \b: match the closing word boundary.
             string urlPattern = @"\b(?:https?://|www\.)\S+\b";
 
@@ -876,6 +875,90 @@ namespace Tam.Util
             builder.Append("<noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>");
             builder.Append("<a href=\"http://disqus.com\" class=\"dsq-brlink\">comments powered by <span class=\"logo-disqus\">Disqus</span></a>");
             return builder.ToString();
+        }
+
+        //http://stackoverflow.com/questions/4015324/http-request-with-post
+
+        public static string GetRequest(string url, string userAgent = null)
+        {
+            //// Create a request for the URL.
+            //WebRequest request = WebRequest.Create(url);
+            //// If required by the server, set the credentials.
+            //request.Credentials = CredentialCache.DefaultCredentials;
+            //if (!string.IsNullOrWhiteSpace(userAgent))
+            //{
+            //    ((HttpWebRequest)request).UserAgent = userAgent.Trim();
+            //}
+            //// Get the response.
+            //WebResponse response = request.GetResponse();
+            //// Display the status.
+            ////Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+            //// Get the stream containing content returned by the server.
+            //Stream dataStream = response.GetResponseStream();
+            //// Open the stream using a StreamReader for easy access.
+            //StreamReader reader = new StreamReader(dataStream);
+            //// Read the content.
+            //string responseFromServer = reader.ReadToEnd();
+            //// Clean up the streams and the response.
+            //reader.Close();
+            //response.Close();
+            //return responseFromServer;
+
+            using (var client = new WebClient())
+            {
+                if (!string.IsNullOrWhiteSpace(userAgent))
+                {
+                    client.Headers["User-Agent"] = userAgent.Trim();
+                }
+                var responseString = client.DownloadString(url);
+                return responseString;
+            }
+        }
+
+        public static string PostRequest(string url, string postData, string userAgent = null)
+        {
+            if (String.IsNullOrWhiteSpace(postData))
+            {
+                return string.Empty;
+            }
+            // Create a request using a URL that can receive a post.
+            WebRequest request = WebRequest.Create(url);
+            // Set the Method property of the request to POST.
+            request.Method = "POST";
+            // Create POST data and convert it to a byte array.
+            //postData = "This is a test that posts this string to a Web server.";
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            // Set the ContentType property of the WebRequest.
+            request.ContentType = "application/x-www-form-urlencoded";
+            // Set the ContentLength property of the WebRequest.
+            request.ContentLength = byteArray.Length;
+
+            if (!string.IsNullOrWhiteSpace(userAgent))
+            {
+                ((HttpWebRequest)request).UserAgent = userAgent.Trim();
+            }
+            // Get the request stream.
+            Stream dataStream = request.GetRequestStream();
+            // Write the data to the request stream.
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            // Close the Stream object.
+            dataStream.Close();
+            // Get the response.
+            WebResponse response = request.GetResponse();
+            // Display the status.
+            //Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+            // Get the stream containing content returned by the server.
+            dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream);
+            // Read the content.
+            string responseFromServer = reader.ReadToEnd();
+
+            // Clean up the streams.
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
         }
     } // end class WebHelper
 
