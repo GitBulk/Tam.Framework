@@ -72,6 +72,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore", "NetCore", "{690B
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tam.NetCore.Util", "NetCore\Tam.NetCore.Util\Tam.NetCore.Util.xproj", "{50928444-475B-4FB4-BAFF-3DD1CAA4EB27}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tam.NetCore.Repository", "NetCore\Tam.NetCore.Repository\Tam.NetCore.Repository.xproj", "{A4979599-6D67-40A4-B9C0-BF283CBF1522}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -186,6 +188,10 @@ Global
 		{50928444-475B-4FB4-BAFF-3DD1CAA4EB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50928444-475B-4FB4-BAFF-3DD1CAA4EB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50928444-475B-4FB4-BAFF-3DD1CAA4EB27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4979599-6D67-40A4-B9C0-BF283CBF1522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4979599-6D67-40A4-B9C0-BF283CBF1522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4979599-6D67-40A4-B9C0-BF283CBF1522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4979599-6D67-40A4-B9C0-BF283CBF1522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -218,5 +224,6 @@ Global
 		{761B2163-CE13-4DF0-917E-5566FBAF9E03} = {B59941FF-2681-48B2-B3A9-27360CE3D80D}
 		{AAA7A7C5-94C8-4038-8EE5-097ED6468ABE} = {B59941FF-2681-48B2-B3A9-27360CE3D80D}
 		{50928444-475B-4FB4-BAFF-3DD1CAA4EB27} = {690BE05B-F020-4E4F-A51C-E3E0B758F6B2}
+		{A4979599-6D67-40A4-B9C0-BF283CBF1522} = {690BE05B-F020-4E4F-A51C-E3E0B758F6B2}
 	EndGlobalSection
 EndGlobal
