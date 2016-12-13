@@ -7,9 +7,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
-using Tam.Repository.Model;
+using Tam.Repository.Contraction;
 
 namespace Tam.Repository.MongoDb
 {
@@ -159,7 +158,7 @@ namespace Tam.Repository.MongoDb
                 });
         }
 
-        public Task<Repository.Model.SearchResult<T>> SearchForAsync(Expression<Func<T, bool>> where, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+        public Task<SearchResult<T>> SearchForAsync(Expression<Func<T, bool>> where, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
         {
             return Task.Run<SearchResult<T>>(() =>
                 {
@@ -167,7 +166,7 @@ namespace Tam.Repository.MongoDb
                 });
         }
 
-        public Task<Repository.Model.SearchResult<T>> SearchForAsync(Expression<Func<T, bool>> where, int skip, int take, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+        public Task<SearchResult<T>> SearchForAsync(Expression<Func<T, bool>> where, int skip, int take, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
         {
             return Task.Run<SearchResult<T>>(() =>
             {

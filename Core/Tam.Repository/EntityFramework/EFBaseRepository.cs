@@ -9,8 +9,6 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Tam.Database;
 using Tam.Repository.Contraction;
-using Tam.Repository.EntityFramework;
-using Tam.Repository.Model;
 
 namespace Tam.Repository.EntityFramework
 {

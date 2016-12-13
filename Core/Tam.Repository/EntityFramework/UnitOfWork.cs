@@ -44,19 +44,25 @@ namespace Tam.Repository.EntityFramework
             return await this.dbContext.SaveChangesAsync();
         }
 
+        private bool disposed = false;
+
         /// <summary>
         /// Disposes all external resources.
         /// </summary>
         /// <param name="disposing">The dispose indicator.</param>
         private void Dispose(bool disposing)
         {
-            if (disposing)
+            if (!this.disposed)
             {
-                if (dbContext != null)
+                if (disposing)
                 {
-                    dbContext.Dispose();
+                    if (dbContext != null)
+                    {
+                        dbContext.Dispose();
+                    }
                 }
             }
+            this.disposed = true;
         }
     }
 }
