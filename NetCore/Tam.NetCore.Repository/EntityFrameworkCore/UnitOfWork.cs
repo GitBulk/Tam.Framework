@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Tam.Repository.Contraction;
 
 namespace Tam.NetCore.Repository.EntityFrameworkCore
 {

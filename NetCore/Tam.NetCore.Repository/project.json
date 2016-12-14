@@ -8,7 +8,12 @@
 
   "frameworks": {
     "netstandard1.6": {
-      "imports": "dnxcore50"
+      "imports": "dnxcore50",
+      "dependencies": {
+        "Tam.Repository.Contraction": {
+          "target": "project"
+        }
+      }
     }
   }
 }

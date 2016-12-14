@@ -169,10 +169,7 @@ namespace Tam.Repository.EntityFramework
             {
                 return orderBy(query).ToList();
             }
-            else
-            {
-                return query.ToList();
-            }
+            return query.ToList();
         }
 
         public virtual IEnumerable<T> GetAll()
