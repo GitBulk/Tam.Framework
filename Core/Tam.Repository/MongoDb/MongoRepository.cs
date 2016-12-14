@@ -187,14 +187,15 @@ namespace Tam.Repository.MongoDb
             });
         }
 
-        public virtual void Add(T item)
+        public virtual int Add(T item)
         {
             if (item == null)
             {
                 throw new ArgumentNullException("item is null");
             }
             item.Id = ObjectId.GenerateNewId();
-            this.Collection.Insert<T>(item);
+            var result = this.Collection.Insert<T>(item);
+            return (int)result.DocumentsAffected;
         }
 
         public int Count()
@@ -222,27 +223,30 @@ namespace Tam.Repository.MongoDb
             return BsonValue.Create(id).AsObjectId;
         }
 
-        public void Delete(object id)
+        public int Delete(object id)
         {
+            WriteConcernResult result;
             if (id.GetType() == typeof(string))
             {
                 var oid = new ObjectId(id as string);
                 //WriteConcernResult result = this.Collection.Remove(Query<T>.EQ<ObjectId>(q => q.Id, oid));
                 // or
-                WriteConcernResult result = this.Collection.Remove(Query.EQ("_id", oid));
+                result = this.Collection.Remove(Query.EQ("_id", oid));
             }
             else
             {
                 //WriteConcernResult result = this.Collection.Remove(Query<T>.EQ<ObjectId>(q => q.Id, BsonValue.Create(id).AsObjectId));
-                WriteConcernResult result = this.Collection.Remove(Query.EQ("_id", BsonValue.Create(id)));
+                result = this.Collection.Remove(Query.EQ("_id", BsonValue.Create(id)));
             }
+            return (int)result.DocumentsAffected;
         }
 
-        public void Delete(T item)
+        public int Delete(T item)
         {
             WriteConcernResult result = this.Collection.Remove(Query<T>.EQ<ObjectId>(q => q.Id, item.Id));
             // or
             //this.collection.Remove(Query.EQ("_id", id));
+            return (int)result.DocumentsAffected;
         }
 
         public void Dispose()
@@ -338,11 +342,12 @@ namespace Tam.Repository.MongoDb
             return searchResult;
         }
 
-        public virtual void Update(T item)
+        public virtual int Update(T item)
         {
             var query = Query<T>.EQ(i => i.Id, item.Id);
             var update = Update<T>.Replace(item);
             WriteConcernResult result = this.Collection.Update(query, update);
+            return 0;
         }
 
         protected virtual SearchResult<T> SearchFor(IMongoQuery query, int skip, int take)

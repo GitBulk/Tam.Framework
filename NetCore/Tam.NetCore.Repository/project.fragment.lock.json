@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "Tam.Repository.Contraction/1.0.0": {
+      "type": "project",
+      "framework": ".NETStandard,Version=v1.3",
+      "compile": {
+        "bin/Debug/Tam.Repository.Contraction.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/Tam.Repository.Contraction.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Tam.Repository.Contraction.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}
