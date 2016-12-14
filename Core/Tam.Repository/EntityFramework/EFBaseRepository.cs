@@ -90,18 +90,30 @@ namespace Tam.Repository.EntityFramework
             return maxPageSize;
         }
 
-        public virtual void Add(T entityToInsert)
+
+        private static bool IsNull(object item)
         {
+            return (item == null);
+        }
+
+        protected static void ThrowIfNull(object item)
+        {
+            if (IsNull(item))
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+        }
+
+        public virtual int Add(T entityToInsert)
+        {
+            ThrowIfNull(entityToInsert);
             this.dbSet.Add(entityToInsert);
-            SaveChanges();
+            return SaveChanges();
         }
 
         public virtual async Task AddAsync(T entity)
         {
-            if (entity == null)
-            {
-                return;
-            }
+            ThrowIfNull(entity);
             this.dbSet.Add(entity);
             await SaveChangesAsync();
         }
@@ -116,23 +128,24 @@ namespace Tam.Repository.EntityFramework
             return await this.dbSet.CountAsync(match);
         }
 
-        public virtual void Delete(object id)
+        public virtual int Delete(object id)
         {
             T entityToDelete = GetById(id);
             if (entityToDelete != null)
             {
-                Delete(entityToDelete);
+                return Delete(entityToDelete);
             }
+            return 0;
         }
 
-        public virtual void Delete(T entityToDelete)
+        public virtual int Delete(T entityToDelete)
         {
             if (context.Entry(entityToDelete).State == EntityState.Detached)
             {
                 dbSet.Attach(entityToDelete);
             }
             dbSet.Remove(entityToDelete);
-            SaveChanges();
+            return SaveChanges();
         }
 
         public void Dispose()
@@ -192,14 +205,14 @@ namespace Tam.Repository.EntityFramework
             return await this.dbSet.FindAsync(id);
         }
 
-        public T GetItem(System.Linq.Expressions.Expression<Func<T, bool>> match)
+        public T GetItem(Expression<Func<T, bool>> match)
         {
             var query = this.dbSet.AsQueryable();
             if (match != null)
             {
                 query = query.Where(match);
             }
-            return this.dbSet.FirstOrDefault();
+            return query.FirstOrDefault();
         }
 
         public virtual async Task<T> GetItemAsync(Expression<Func<T, bool>> match)
@@ -209,7 +222,7 @@ namespace Tam.Repository.EntityFramework
             {
                 query = query.Where(match);
             }
-            return await this.dbSet.FirstOrDefaultAsync();
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> GetItemsAsync(Expression<Func<T, bool>> match)
@@ -276,19 +289,17 @@ namespace Tam.Repository.EntityFramework
         //    return query;
         //}
 
-        public virtual void Update(T entityToUpdate)
+        public virtual int Update(T entityToUpdate)
         {
+            ThrowIfNull(entityToUpdate);
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;
-            SaveChanges();
+            return SaveChanges();
         }
 
         public virtual async Task UpdateAsync(T entity)
         {
-            if (entity == null)
-            {
-                return;
-            }
+            ThrowIfNull(entity);
             this.dbSet.Attach(entity);
             this.context.Entry(entity).State = EntityState.Modified;
             await SaveChangesAsync();
@@ -333,7 +344,7 @@ namespace Tam.Repository.EntityFramework
         {
             if (filter == null)
             {
-                throw new ArgumentNullException("filter");
+                return Count();
             }
             return this.dbSet.Count(filter);
         }
