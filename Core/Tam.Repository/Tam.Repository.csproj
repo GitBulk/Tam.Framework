@@ -64,7 +64,6 @@
     <Compile Include="EntityFramework\EFBaseRepository.cs" />
     <Compile Include="Contraction\IConnectionString.cs" />
     <Compile Include="EntityFramework\UnitOfWork.cs" />
-    <Compile Include="EntityFramework\IUnitOfWork.cs" />
     <Compile Include="Extension\IReadOnlyAsyncRepositoryExtensions.cs" />
     <Compile Include="MongoDb\BaseEntity.cs" />
     <Compile Include="MongoDb\IMongoRepository.cs" />

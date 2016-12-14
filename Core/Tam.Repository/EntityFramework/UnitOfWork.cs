@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Threading;
 using System.Threading.Tasks;
+using Tam.Repository.Contraction;
 
 namespace Tam.Repository.EntityFramework
 {
@@ -39,9 +41,9 @@ namespace Tam.Repository.EntityFramework
             return dbContext.SaveChanges();
         }
 
-        public async Task<int> SaveChangesAsync()
+        public Task<int> SaveChangesAsync()
         {
-            return await this.dbContext.SaveChangesAsync();
+            return this.dbContext.SaveChangesAsync();
         }
 
         private bool disposed = false;
@@ -63,6 +65,11 @@ namespace Tam.Repository.EntityFramework
                 }
             }
             this.disposed = true;
+        }
+
+        public Task<int> SaveChangesAsync(CancellationToken cancell)
+        {
+            return this.dbContext.SaveChangesAsync(cancell);
         }
     }
 }
