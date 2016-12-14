@@ -427,7 +427,7 @@ namespace Tam.Repository.EntityFramework
             {
                 PageSize = take,
                 Data = await query.ToListAsync(),
-                TotalItem = 0
+                TotalItem = count
             };
         }
 
