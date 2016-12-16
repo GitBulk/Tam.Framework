@@ -38,7 +38,7 @@ namespace Tam.Compression
 
         public static bool IsGzipSupported()
         {
-            string acceptEncoding = HttpContext.Current.Request[AcceptEncoding];
+            string acceptEncoding = HttpContext.Current.Request.Headers[AcceptEncoding];
             if (!string.IsNullOrEmpty(acceptEncoding) &&
                 (acceptEncoding.Contains(GzipMode) || acceptEncoding.Contains(DeflateMode)))
             {
