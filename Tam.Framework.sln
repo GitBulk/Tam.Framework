@@ -70,7 +70,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Web", "Demo\Demo.Web\D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore", "NetCore", "{690BE05B-F020-4E4F-A51C-E3E0B758F6B2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tam.NetCore.Util", "NetCore\Tam.NetCore.Util\Tam.NetCore.Util.xproj", "{50928444-475B-4FB4-BAFF-3DD1CAA4EB27}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tam.NetCore.Utilities", "NetCore\Tam.NetCore.Utilities\Tam.NetCore.Utilities.xproj", "{50928444-475B-4FB4-BAFF-3DD1CAA4EB27}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tam.NetCore.Repository", "NetCore\Tam.NetCore.Repository\Tam.NetCore.Repository.xproj", "{A4979599-6D67-40A4-B9C0-BF283CBF1522}"
 EndProject

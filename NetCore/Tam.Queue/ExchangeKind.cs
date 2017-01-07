@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace Tam.Queue
 {
-    public class Class1
+    [Flags]
+    public enum ExchangeKind
     {
-        public Class1()
-        {
-        }
+        Direct = 1,
+        Fanout = 2,
+        Headers = 4,
+        Topic = 8
     }
 }
