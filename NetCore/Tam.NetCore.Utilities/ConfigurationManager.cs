@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace Tam.NetCore.Util
+namespace Tam.NetCore.Utilities
 {
     public static class ConfigurationManager
     {

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Tam.NetCore.Util
+namespace Tam.NetCore.Utilities
 {
     public static class ServiceCollectionExtension
     {

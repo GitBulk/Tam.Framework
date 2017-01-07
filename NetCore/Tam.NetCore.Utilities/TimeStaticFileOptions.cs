@@ -2,7 +2,7 @@
 using Microsoft.Net.Http.Headers;
 using System;
 
-namespace Tam.NetCore.Util
+namespace Tam.NetCore.Utilities
 {
     /// <summary>
     /// Usage: app.UseStaticFiles(new TimeStaticFileOptions(a number)

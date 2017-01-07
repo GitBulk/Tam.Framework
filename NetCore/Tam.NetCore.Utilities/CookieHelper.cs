@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 
-namespace Tam.NetCore.Util
+namespace Tam.NetCore.Utilities
 {
     public static class CookieHelper
     {

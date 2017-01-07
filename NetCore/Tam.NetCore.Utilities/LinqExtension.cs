@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 
-namespace Tam.NetCore.Util
+namespace Tam.NetCore.Utilities
 {
     public static class LinqExtension
     {

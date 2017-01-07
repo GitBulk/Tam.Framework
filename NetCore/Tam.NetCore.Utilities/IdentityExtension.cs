@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Tam.NetCore.Util
+namespace Tam.NetCore.Utilities
 {
     public static class IdentityExtension
     {
