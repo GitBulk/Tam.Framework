@@ -76,6 +76,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Tam.NetCore.Repository", "N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tam.Repository.Contraction", "Core\Tam.Repository.Contraction\Tam.Repository.Contraction.csproj", "{A0358AE6-8961-4FC4-AFA9-954D77088658}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tam.Queue", "Core\Tam.Queue\Tam.Queue.csproj", "{5A82A6F7-9933-45CD-8CAE-B834ECCDF312}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -198,6 +200,10 @@ Global
 		{A0358AE6-8961-4FC4-AFA9-954D77088658}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0358AE6-8961-4FC4-AFA9-954D77088658}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0358AE6-8961-4FC4-AFA9-954D77088658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A82A6F7-9933-45CD-8CAE-B834ECCDF312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A82A6F7-9933-45CD-8CAE-B834ECCDF312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A82A6F7-9933-45CD-8CAE-B834ECCDF312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A82A6F7-9933-45CD-8CAE-B834ECCDF312}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -232,5 +238,6 @@ Global
 		{50928444-475B-4FB4-BAFF-3DD1CAA4EB27} = {690BE05B-F020-4E4F-A51C-E3E0B758F6B2}
 		{A4979599-6D67-40A4-B9C0-BF283CBF1522} = {690BE05B-F020-4E4F-A51C-E3E0B758F6B2}
 		{A0358AE6-8961-4FC4-AFA9-954D77088658} = {D2847E67-DF54-4ADF-B0DD-B36BBCF65AE3}
+		{5A82A6F7-9933-45CD-8CAE-B834ECCDF312} = {D2847E67-DF54-4ADF-B0DD-B36BBCF65AE3}
 	EndGlobalSection
 EndGlobal
