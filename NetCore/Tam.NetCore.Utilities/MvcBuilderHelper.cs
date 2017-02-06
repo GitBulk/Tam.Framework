@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 
-namespace Tam.NetCore.Util
+namespace Tam.NetCore.Utilities
 {
     public static class MvcBuilderHelper
     {
