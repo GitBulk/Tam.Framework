@@ -1,5 +1,4 @@
-﻿using Tam.Repository.Model;
-using Tam.Repository.MongoDb;
+﻿using Tam.Repository.MongoDb;
 
 namespace Tam.MongoDb.Model
 {

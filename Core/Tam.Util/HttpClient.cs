@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Tam.Util
 {
     public class HttpClient : IWebRequestAsync
     {
-        public String BaseAddress { get; set; }
+        public string BaseAddress { get; set; }
         public HttpClient(string baseAddress)
         {
             this.BaseAddress = baseAddress;
@@ -40,7 +36,6 @@ namespace Tam.Util
             using (var client = new System.Net.Http.HttpClient())
             {
                 SetupHttpClient(requestApi, client);
-                client.p
                 return client.GetAsync(requestApi);
             }
         }

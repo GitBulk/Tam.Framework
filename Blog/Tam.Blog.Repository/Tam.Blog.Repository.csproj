@@ -65,7 +65,6 @@
     <Compile Include="Implementation\PostRepository.cs" />
     <Compile Include="Implementation\CachedBlogRepository.cs" />
     <Compile Include="Implementation\CategoryRepository.cs" />
-    <Compile Include="Implementation\BaseRepository.cs" />
     <Compile Include="Implementation\RelatedPostRepository.cs" />
     <Compile Include="Implementation\StaticRepository.cs" />
     <Compile Include="Implementation\TagRepository.cs" />
